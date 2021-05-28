@@ -93,7 +93,7 @@ const Navbar = () => {
                             <a className="nav-link" href="#"><FaUserAlt/></a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#"><FaShoppingBag/></a>
+                            <a className="nav-link shopping-bag" href="#"><FaShoppingBag/><div className="items">800</div></a>
                         </li>
                     </ul>
                 </div>
