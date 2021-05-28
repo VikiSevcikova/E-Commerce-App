@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaRegHandPeace, FaUserAlt, FaShoppingBag } from "react-icons/fa";
+import { FaRegHandPeace, FaSearch, FaUserAlt, FaShoppingBag } from "react-icons/fa";
 import './Navbar.css';
 
 const Navbar = () => {
@@ -16,15 +16,8 @@ const Navbar = () => {
                     <ul className="navbar-nav mx-auto">
                         <li className="nav-item dropdown">
                             <a className="nav-link" href="#" id="category1" role="button" data-bs-toggle="dropdown" aria-expanded="false">CATEGORY 1</a>
-                            <ul className="dropdown-menu multi-column columns-3" aria-labelledby="category1">
+                            <ul className="dropdown-menu multi-column columns-2" aria-labelledby="category1">
                                 <div className="row gx-0 justify-content-center">
-                                    <div className="col-sm-2">
-                                        <ul className="multi-column-dropdown">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                        </ul>
-                                    </div>
                                     <div className="col-sm-2">
                                         <ul className="multi-column-dropdown">
                                             <li><a href="#">Action</a></li>
@@ -72,15 +65,8 @@ const Navbar = () => {
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link" href="#" id="category3" role="button" data-bs-toggle="dropdown" aria-expanded="false">CATEGORY 3</a>
-                            <ul className="dropdown-menu multi-column columns-3" aria-labelledby="category3">
+                            <ul className="dropdown-menu multi-column columns-2" aria-labelledby="category3">
                                 <div className="row gx-0 justify-content-center">
-                                    <div className="col-sm-2">
-                                        <ul className="multi-column-dropdown">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                        </ul>
-                                    </div>
                                     <div className="col-sm-2">
                                         <ul className="multi-column-dropdown">
                                             <li><a href="#">Action</a></li>
@@ -100,6 +86,9 @@ const Navbar = () => {
                         </li>
                     </ul>
                     <ul className="nav navbar-nav ms-20">
+                        <li className="nav-item">
+                            <a className="nav-link" href="#"><FaSearch/></a>
+                        </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#"><FaUserAlt/></a>
                         </li>
