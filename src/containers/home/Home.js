@@ -6,7 +6,7 @@ const Home = () => {
 
     return(
         <div className="container-fluid">
-            <div className="d-flex flex-column justify-content-end justify-content-md-center align-items-center" 
+            <div className="p-2 d-flex flex-column justify-content-end justify-content-md-center align-items-center" 
                 style={{
                     backgroundImage: `url(${banner})`,
                     backgroundSize: "cover",
@@ -30,6 +30,52 @@ const Home = () => {
                    <ProductCard/>
                 </div>
             </div>
+
+            <div className="p-2 d-flex flex-row" >
+                <div className="col-6">
+                    <img className="img-fluid" src={banner}/>
+                </div>
+                <div className="col-6 d-flex flex-column justify-content-center align-items-center">
+                    <h1 className="display-5 fw-bold text-uppercase">Title</h1>
+                    <button type="button" className="btn btn-dark btn-lg px-4 text-uppercase">Shop</button>
+                </div>
+            </div>
+
+            <div className="container">
+                <div className="d-flex flex-row justify-content-between mt-5 mb-3">
+                    <h4 className="fw-bold text-uppercase">Category 1</h4>
+                    <a className="link-dark fw-bold" href="#">View all</a>
+                </div>
+         
+                <div className="row">
+                   <ProductCard/>
+                   <ProductCard/>
+                   <ProductCard/>
+                   <ProductCard/>
+                </div>
+            </div>
+
+            <div className="row p-2">
+                <div className="col-md-6">
+                    <div className="col-md-12 p-2 gap-2 d-flex flex-column justify-content-end justify-content-md-center align-items-center" style={{
+                        backgroundImage: `url(${banner})`,
+                        backgroundSize: "cover",
+                        height: "90vh"}}>
+                        <h1 className="display-5 fw-bold text-uppercase">Title</h1>
+                        <button type="button" className="btn btn-dark btn-lg px-4 text-uppercase">Shop</button>
+                    </div>
+                </div>
+                <div className="col-md-6">
+                    <div className="col-md-12 p-2 gap-2 d-flex flex-column justify-content-end justify-content-md-center align-items-center" style={{
+                        backgroundImage: `url(${banner})`,
+                        backgroundSize: "cover",
+                        height: "90vh"}}>
+                        <h1 className="display-5 fw-bold text-uppercase">Title</h1>
+                        <button type="button" className="btn btn-dark btn-lg px-4 text-uppercase">Shop</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     );
 }

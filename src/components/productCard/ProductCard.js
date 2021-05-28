@@ -7,7 +7,7 @@ const ProductCard = () => {
 
     return(
         <div className="col-md-3">
-            <div class="card border-0" style={{width: "18rem"}} href="#">
+            <div class="card border-0" style={{width: "100%"}} href="#">
                 <div className="product-image" >
                     <a href="#">
                         <img src={product} class="card-img-top rounded-0" alt="p1"/>
@@ -18,7 +18,6 @@ const ProductCard = () => {
                     </div>
                 </div>
                
-                
                 <div class="card-body px-0 mx-0">
                     <a href="#" class="card-text text-decoration-none link-dark d-flex flex-row justify-content-between">
                         <h6>Title of the product</h6>
