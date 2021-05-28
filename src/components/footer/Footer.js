@@ -9,7 +9,7 @@ const Footer = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-md">
-                            <h6 className="text-uppercase"><strong>Help</strong></h6>
+                            <h6 className="text-uppercase fw-bold">Help</h6>
                             <ul className="list-unstyled">
                                 <li>
                                     <a className="link-secondary text-decoration-none" href="#">Delivery Information</a>
@@ -20,7 +20,7 @@ const Footer = () => {
                             </ul>
                         </div>
                         <div className="col-md">
-                            <h6 className="text-uppercase"><strong>Company Information</strong></h6>
+                            <h6 className="text-uppercase fw-bold">Company Information</h6>
                             <ul className="list-unstyled">
                                 <li>
                                     <a className="link-secondary text-decoration-none" href="#">About Us</a>
@@ -31,7 +31,7 @@ const Footer = () => {
                             </ul>
                         </div>
                         <div className="col-md">
-                            <h6 className="text-uppercase"><strong>My Account</strong></h6>
+                            <h6 className="text-uppercase fw-bold">My Account</h6>
                             <ul className="list-unstyled">
                                 <li>
                                     <a className="link-secondary text-decoration-none" href="#">Login</a>
@@ -42,7 +42,7 @@ const Footer = () => {
                             </ul>
                         </div>
                         <div className="col-md">
-                            <h6 className="text-uppercase"><strong>Follow Us</strong></h6>
+                            <h6 className="text-uppercase fw-bold">Follow Us</h6>
                             <ul className="social list-unstyled text-decoration-none d-flex flex-row">
                                 <li>
                                     <a className="link-secondary text-decoration-none pe-2 fs-4" href="#"><span><FaInstagramSquare/></span></a>
@@ -56,7 +56,7 @@ const Footer = () => {
                             </ul>
                         </div>
                         <div className="col-md">
-                            <h6 className="text-uppercase"><strong>Pay Securely With</strong></h6>
+                            <h6 className="text-uppercase fw-bold">Pay Securely With</h6>
                             <ul className="social list-unstyled d-flex flex-row">
                                 <li>
                                     <span className="text-secondary pe-2 fs-4"><FaCcStripe/></span>
