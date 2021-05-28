@@ -1,6 +1,15 @@
 
 .nav-link, .navbar-brand{
     font-weight: bold;
+    color: black !important;
+}
+
+.nav-link:hover, .navbar-brand:hover{
+    color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.nav-link.show, .navbar-brand.show{
+    color: rgba(0, 0, 0, 0.7) !important;
 }
 
 .dropdown {
