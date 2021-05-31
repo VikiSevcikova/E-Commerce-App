@@ -7,14 +7,21 @@ const ProductCard = () => {
 
     return(
         <div className="col-md-3">
-            <div class="card border-0" style={{width: "100%"}} href="#">
+            <div className="card border-0" style={{width: "100%"}} href="#">
                 <div className="product-image" >
                     <a href="#">
                         <img src={product} class="card-img-top rounded-0" alt="p1"/>
                     </a>
                     <div className="quick-add-overlay rounded py-2 px-2">
                         <h6 className="text-uppercase fw-bold">Quick Add</h6>
-                        <button className="btn p-0" type="button"><FaPlusSquare/></button>
+                        <div className="btn-toolbar text-center well">
+                            <button type="button" class="btn btn-sm btn-outline-dark col-xs-2 me-1">XS</button>
+                            <button type="button" class="btn btn-sm btn-outline-dark col-xs-2 me-1">S</button>
+                            <button type="button" class="btn btn-sm btn-outline-dark col-xs-2 me-1">M</button>
+                            <button type="button" class="btn btn-sm btn-outline-dark col-xs-2 me-1">L</button>
+                            <button type="button" class="btn btn-sm btn-outline-dark col-xs-2">XL</button>
+                        </div>
+                       
                     </div>
                 </div>
                
