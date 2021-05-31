@@ -1,6 +1,3 @@
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import "../scss/SignIn.scss";
 
@@ -35,14 +32,14 @@ const LogIn = (props) => {
         </Row>
       </form>
       <div>
-        <p className="forgotPW">Forgot your password?</p>
+        <p className="forgotPw">Forgot your password?</p>
       </div>
       <div>
         <p className="or">or</p>
       </div>
       <div>
         <img
-          className="google-btn"
+          className="googleBtn"
           src="image/btn_google_signin_dark_normal_web@2x.png"
           alt="sign-in-with-google"
         />
@@ -51,10 +48,10 @@ const LogIn = (props) => {
   );
   return (
     <>
-      <div className="mouseover" onMouseOver={props.onMouseOver}>
+      <div onMouseOver={props.onMouseOver}>
         <Container>
           <div
-            className={`SignIn-wrapper ${
+            className={`signInWrapper ${
               props.isHovered ? "bgStyleHovered" : "bgStyle"
             }`}
           >
@@ -62,7 +59,6 @@ const LogIn = (props) => {
           </div>
         </Container>
       </div>
-      ;
     </>
   );
 };

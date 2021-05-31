@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 const CreateAccount = (props) => {
   const content = (
     <div>
-      <div className="newCustomer-title">
+      <div className="newCustomerTitle">
         <h2>NEW CUSTOMER?</h2>
       </div>
       <div>
@@ -19,7 +19,7 @@ const CreateAccount = (props) => {
             <label for="newsletter">Sign up for Newsletter</label>
           </div>
           <Button className="forms" variant="dark" type="submit">
-            LOG IN
+            CREATE ACCOUNT
           </Button>
         </form>
       </div>
@@ -29,7 +29,7 @@ const CreateAccount = (props) => {
     <>
       <div onMouseOver={props.onMouseOver}>
         <div
-          className={`SignIn-wrapper ${
+          className={`signInWrapper ${
             props.isHovered ? "bgStyleHovered" : "bgStyle"
           }`}
         >

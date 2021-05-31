@@ -21,11 +21,6 @@ function SignInPage() {
       <Row>
         <Col>
           <LogIn
-            // isLogInHovered={isLogInHovered}
-            // setLogInHovered={setLogInHovered}
-            // isSignUpHovered={isSignUpHovered}
-            // setSignUpHovered={setSignUpHovered}
-
             isHovered={isLogInHovered}
             onMouseOver={() => {
               setLogInHovered(true);
@@ -35,11 +30,6 @@ function SignInPage() {
         </Col>
         <Col>
           <CreateAccount
-            // isSignUpHovered={isSignUpHovered}
-            // setSignUpHovered={setSignUpHovered}
-            // isLogInHovered={isLogInHovered}
-            // setLogInHovered={setLogInHovered}
-
             isHovered={isSignUpHovered}
             onMouseOver={() => {
               setLogInHovered(false);
