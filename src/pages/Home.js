@@ -7,6 +7,7 @@ import men from '../assets/men.jpg';
 import onsideimage from '../assets/onsideimage.jpg';
 
 import ProductCard from '../components/productCard/ProductCard';
+import RowOfProducts from '../components/RowOfProducts';
 
 const Home = () => {
 
@@ -23,18 +24,7 @@ const Home = () => {
                 </Col>
             </Row>
 
-            <Container className="my-4">
-                <div className="d-flex flex-row justify-content-between mb-3">
-                    <h4 className="fw-bold text-uppercase">bottoms & leggings</h4>
-                    <a className="link-dark fw-bold" href="#">View all</a>
-                </div>
-                <Row>
-                   <ProductCard/>
-                   <ProductCard/>
-                   <ProductCard/>
-                   <ProductCard/>
-                </Row>
-            </Container>
+            <RowOfProducts category="bottoms & leggings" isHomePage={true} />
 
             <Row className="p-2 align-items-center" >
                 <Col md={6}>
@@ -47,19 +37,7 @@ const Home = () => {
                 </Col>
             </Row>
 
-            <Container className="my-4">
-                <div className="d-flex flex-row justify-content-between mb-3">
-                    <h4 className="fw-bold text-uppercase">Hoodies & jackets</h4>
-                    <a className="link-dark fw-bold" href="#">View all</a>
-                </div>
-         
-                <Row>
-                   <ProductCard/>
-                   <ProductCard/>
-                   <ProductCard/>
-                   <ProductCard/>
-                </Row>
-            </Container>
+            <RowOfProducts category="hoodies & jackets" isHomePage={true} />
 
             <Row className="p-2">
                 <Col md={6} className="mt-2">

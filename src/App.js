@@ -12,6 +12,7 @@ import Home from "./pages/Home";
 import SignInPage from "./pages/SignInPage";
 
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import ProductDetailsPage from "./pages/ProductDetailsPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Switch>
             <Route path='/' exact component={Home}/>
             <Route path='/signin' exact component={SignInPage}/>
+            <Route path='/product-details' exact component={ProductDetailsPage}/>
           </Switch>
         <Footer />
       </div>
