@@ -5,9 +5,9 @@ const Footer = () => {
 
     return(
         <>
-            <footer className="footer mt-5 px-2">
+            <footer className="footer mt-5 ps-3">
                 <div className="container">
-                    <div className="row">
+                    <div className="row px-0 mx-0">
                         <div className="col-md">
                             <h6 className="text-uppercase fw-bold">Help</h6>
                             <ul className="list-unstyled">
@@ -70,7 +70,7 @@ const Footer = () => {
                             </ul>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row px-0 mx-0">
                         <div className="col-12">
                             <div className="copyright border-top mt-5 pt-5">
                                 <p>© 2021 | <FaRegHandPeace/>Brand</p>
