@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
-
-import LogInAccountContainer from "../components/LogInAccountContainer";
-import LogIn from "../components/LogIn";
+import { Col, Container, Row } from "react-bootstrap";
 import CreateAccount from "../components/CreateAccount";
-
+import LogIn from "../components/LogIn";
+import LogInAccountContainer from "../components/LogInAccountContainer";
 import "../scss/SignIn.scss";
 
 function SignInPage() {

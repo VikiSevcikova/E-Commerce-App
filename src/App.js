@@ -1,12 +1,12 @@
-import React from "react";
-import "./scss/App.scss";
-import "./App.css";
-import Navbar from "./components/navbar/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import Home from "./containers/home/Home";
+import React from "react";
+import "./App.css";
 import Footer from "./components/footer/Footer";
+import Navbar from "./components/navbar/Navbar";
+import Home from "./containers/home/Home";
 import SignInPage from "./pages/SignInPage";
+import "./scss/App.scss";
 
 function App() {
   return (
