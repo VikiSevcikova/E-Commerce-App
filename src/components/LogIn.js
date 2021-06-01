@@ -20,18 +20,19 @@ const LogIn = (props) => {
 
     try {
       var response = await axios.post(url, loginFormData);
+      var response2 = await axios.get("http://localhost:4000/users/me");
+      console.log(response2.data);
       alert("Hi, you were logged in.");
     } catch (error) {
       console.error(error);
       alert("Sorry, wrong password or email.");
     }
-
   };
 
   const resetForm = () => {
     setLoginEmail("");
     setLoginPassword("");
-  }
+  };
 
   const content = (
     <>
@@ -44,7 +45,7 @@ const LogIn = (props) => {
               name="loginEmail"
               placeholder="Email Address"
               value={loginEmail}
-              onChange={(e)=> setLoginEmail(e.target.value)}
+              onChange={(e) => setLoginEmail(e.target.value)}
             ></input>
           </Col>
         </Row>
@@ -56,7 +57,7 @@ const LogIn = (props) => {
               name="loginPassword"
               placeholder="Password"
               value={loginPassword}
-              onChange={(e)=> setLoginPassword(e.target.value)}
+              onChange={(e) => setLoginPassword(e.target.value)}
             ></input>
           </Col>
         </Row>

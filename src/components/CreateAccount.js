@@ -49,7 +49,7 @@ const CreateAccount = (props) => {
     setEmail("");
     setPassword("");
     setSendNewsletter(false);
-  }
+  };
 
   const content = (
     <div>
@@ -92,7 +92,12 @@ const CreateAccount = (props) => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <div className="newsletter">
-            <input type="checkbox" name="newsletter" value={sendNewsletter} onChange={(e) => setSendNewsletter(e.target.value)} />
+            <input
+              type="checkbox"
+              name="newsletter"
+              value={sendNewsletter}
+              onChange={(e) => setSendNewsletter(e.target.value)}
+            />
             <label htmlFor="newsletter">Sign up for Newsletter</label>
           </div>
           <Button
