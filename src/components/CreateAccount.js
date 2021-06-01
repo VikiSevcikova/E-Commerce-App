@@ -9,15 +9,32 @@ const CreateAccount = (props) => {
   const [password, setPassword] = useState("");
   const [sendNewsletter, setSendNewsletter] = useState(false);
 
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+  const validateForm = () => {
+    return (
+      firstName.length > 0 &&
+      lastName.length > 0 &&
+      email.length > 0 &&
+      password.length > 0
+    );
+  }  
+
+  const handleChange = (e) => {
+    switch (e.target.name){
+      case "firstName": setFirstName(e.target.value); break;
+      case "lastName": setLastName(e.target.value); break;
+      case "email": setEmail(e.target.value); break;
+      case "password": setPassword(e.target.value); break;
+      case "newsletter": setSendNewsletter(e.target.value); break;
+      default: return;
+    }
+  }
 
   const createAccount = (e) => {
     e.preventDefault();
 
     const url = "https://e-commerce-api.belzaondrej.com/users";
 
-    const formData = { 
+    const createFormData = { 
       firstName: firstName,
       lastName: lastName,
       email: email,
@@ -29,7 +46,7 @@ const CreateAccount = (props) => {
       headers: {
         "content-type":"application/json; charset=UTF-8"
       },
-      body:formData,
+      body:createFormData,
       method:"POST"
     };
     
@@ -40,29 +57,6 @@ const CreateAccount = (props) => {
         alert("Sorry, account was not created.");
         console.log(error);
       });
-
-  }
-
-  const handleChange = (e) => {
-    switch (e.target.name){
-      case "firstName": setFirstName(e.target.value); break;
-      case "lastName": setLastName(e.target.value); break;
-      case "email": setEmail(e.target.value); break;
-      case "password": setPassword(e.target.value); break;
-      case "newsletter": setSendNewsletter(e.target.value); break;
-      case "loginEmail": setLoginEmail(e.target.value); break;
-      case "loginPassword": setLoginPassword(e.target.value); break;
-      default: return;
-    }
-  }
-
-  const validateForm = () => {
-    return (
-      firstName.length > 0 &&
-      lastName.length > 0 &&
-      email.length > 0 &&
-      password.length > 0
-    );
   }
 
   const content = (

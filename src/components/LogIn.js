@@ -1,16 +1,58 @@
+import { useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import "../scss/SignIn.scss";
 
 const LogIn = (props) => {
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  
+  const handleChange = (e) => {
+    switch (e.target.name){
+      case "loginEmail": setLoginEmail(e.target.value); break;
+      case "loginPassword": setLoginPassword(e.target.value); break;
+      default: return;
+    }
+  }
+
+  const login = (e) => {
+    e.preventDefault();
+
+    const url = "https://e-commerce-api.belzaondrej.com/users/login";
+
+    const loginFormData = { 
+      email: loginEmail,
+      password: loginPassword  
+    }
+
+    const params={
+      headers: {
+        "content-type":"application/json; charset=UTF-8"
+      },
+      body:loginFormData,
+      method:"POST"
+    };
+    
+    fetch(url, params)
+    .then(data=>{return data.json()})
+    .then(res=>console.log("Logged in."))
+    .catch(error=>{
+        alert("Sorry, wrong password or email.");
+        console.log(error);
+      });
+  }
+
+
   const content = (
     <>
-      <form>
+      <form onSubmit={login}>
         <Row>
           <Col>
             <input
               className="forms"
-              type="text"
+              type="email"
+              name="loginEmail"
               placeholder="Email Address"
+              onChange={handleChange}
             ></input>
           </Col>
         </Row>
@@ -18,8 +60,10 @@ const LogIn = (props) => {
           <Col>
             <input
               className="forms"
-              type="Password"
+              type="password"
+              name="loginPassword"
               placeholder="Password"
+              onChange={handleChange}
             ></input>
           </Col>
         </Row>
