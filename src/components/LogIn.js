@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import "../scss/SignIn.scss";
@@ -6,21 +7,9 @@ const LogIn = (props) => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
-  const handleChange = (e) => {
-    switch (e.target.name) {
-      case "loginEmail":
-        setLoginEmail(e.target.value);
-        break;
-      case "loginPassword":
-        setLoginPassword(e.target.value);
-        break;
-      default:
-        return;
-    }
-  };
-
-  const login = (e) => {
+  const login = async (e) => {
     e.preventDefault();
+    resetForm();
 
     const url = "https://e-commerce-api.belzaondrej.com/users/login";
 
@@ -29,24 +18,20 @@ const LogIn = (props) => {
       password: loginPassword,
     };
 
-    const params = {
-      headers: {
-        "content-type": "application/json; charset=UTF-8",
-      },
-      body: loginFormData,
-      method: "POST",
-    };
+    try {
+      var response = await axios.post(url, loginFormData);
+      alert("Hi, you were logged in.");
+    } catch (error) {
+      console.error(error);
+      alert("Sorry, wrong password or email.");
+    }
 
-    fetch(url, params)
-      .then((data) => {
-        return data.json();
-      })
-      .then((res) => console.log("Logged in."))
-      .catch((error) => {
-        alert("Sorry, wrong password or email.");
-        console.log(error);
-      });
   };
+
+  const resetForm = () => {
+    setLoginEmail("");
+    setLoginPassword("");
+  }
 
   const content = (
     <>
@@ -58,7 +43,8 @@ const LogIn = (props) => {
               type="email"
               name="loginEmail"
               placeholder="Email Address"
-              onChange={handleChange}
+              value={loginEmail}
+              onChange={(e)=> setLoginEmail(e.target.value)}
             ></input>
           </Col>
         </Row>
@@ -69,7 +55,8 @@ const LogIn = (props) => {
               type="password"
               name="loginPassword"
               placeholder="Password"
-              onChange={handleChange}
+              value={loginPassword}
+              onChange={(e)=> setLoginPassword(e.target.value)}
             ></input>
           </Col>
         </Row>

@@ -19,30 +19,10 @@ const CreateAccount = (props) => {
     );
   };
 
-  const handleChange = (e) => {
-    switch (e.target.name) {
-      case "firstName":
-        setFirstName(e.target.value);
-        break;
-      case "lastName":
-        setLastName(e.target.value);
-        break;
-      case "email":
-        setEmail(e.target.value);
-        break;
-      case "password":
-        setPassword(e.target.value);
-        break;
-      case "newsletter":
-        setSendNewsletter(e.target.value);
-        break;
-      default:
-        return;
-    }
-  };
-
   const createAccount = async (e) => {
     e.preventDefault();
+
+    resetForm();
 
     const url = "https://e-commerce-api.belzaondrej.com/users";
 
@@ -61,23 +41,15 @@ const CreateAccount = (props) => {
       console.error(error);
       alert("Sorry, account was not created.");
     }
-
-    // const params={
-    //   headers: {
-    //     "content-type":"application/json; charset=UTF-8"
-    //   },
-    //   body:createFormData,
-    //   method:"POST"
-    // };
-
-    // fetch(url, params)
-    // .then(data=>{return data.json()})
-    // .then(res=>alert("Your account was created."+res.message))
-    // .catch(error=>{
-    //     alert("Sorry, account was not created.");
-    //     console.log(error);
-    //   });
   };
+
+  const resetForm = () => {
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setPassword("");
+    setSendNewsletter(false);
+  }
 
   const content = (
     <div>
@@ -92,31 +64,35 @@ const CreateAccount = (props) => {
             type="text"
             name="firstName"
             placeholder="First Name*"
-            onChange={handleChange}
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
           />
           <input
             className="forms"
             type="text"
             name="lastName"
             placeholder="Last Name*"
-            onChange={handleChange}
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
           />
           <input
             className="forms"
             type="email"
             name="email"
             placeholder="Email Address*"
-            onChange={handleChange}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <input
             className="forms"
             type="password"
             name="password"
             placeholder="Password*"
-            onChange={handleChange}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <div className="newsletter">
-            <input type="checkbox" name="newsletter" onChange={handleChange} />
+            <input type="checkbox" name="newsletter" value={sendNewsletter} onChange={(e) => setSendNewsletter(e.target.value)} />
             <label htmlFor="newsletter">Sign up for Newsletter</label>
           </div>
           <Button
