@@ -5,7 +5,6 @@ import { FaRegHandPeace, FaSearch, FaUserAlt, FaShoppingBag } from "react-icons/
 import './Navbar.css';
 
 const Navbar = () => {
-
     return(
         <>
         <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top px-2">

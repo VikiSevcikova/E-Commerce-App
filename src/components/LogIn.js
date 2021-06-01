@@ -1,16 +1,50 @@
-import { Container, Row, Col, Button } from "react-bootstrap";
+import axios from "axios";
+import { useState } from "react";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import "../scss/SignIn.scss";
 
 const LogIn = (props) => {
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+
+  const login = async (e) => {
+    e.preventDefault();
+    resetForm();
+
+    const url = "https://e-commerce-api.belzaondrej.com/users/login";
+
+    const loginFormData = {
+      email: loginEmail,
+      password: loginPassword,
+    };
+
+    try {
+      var response = await axios.post(url, loginFormData);
+      alert("Hi, you were logged in.");
+    } catch (error) {
+      console.error(error);
+      alert("Sorry, wrong password or email.");
+    }
+
+  };
+
+  const resetForm = () => {
+    setLoginEmail("");
+    setLoginPassword("");
+  }
+
   const content = (
     <>
-      <form>
+      <form onSubmit={login}>
         <Row>
           <Col>
             <input
               className="forms"
-              type="text"
+              type="email"
+              name="loginEmail"
               placeholder="Email Address"
+              value={loginEmail}
+              onChange={(e)=> setLoginEmail(e.target.value)}
             ></input>
           </Col>
         </Row>
@@ -18,8 +52,11 @@ const LogIn = (props) => {
           <Col>
             <input
               className="forms"
-              type="Password"
+              type="password"
+              name="loginPassword"
               placeholder="Password"
+              value={loginPassword}
+              onChange={(e)=> setLoginPassword(e.target.value)}
             ></input>
           </Col>
         </Row>

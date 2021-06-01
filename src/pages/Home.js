@@ -10,7 +10,6 @@ import ProductCard from '../components/productCard/ProductCard';
 import RowOfProducts from '../components/RowOfProducts';
 
 const Home = () => {
-
     return(
         <Container fluid>
             <Row className="justify-content-center" style={{
@@ -39,29 +38,55 @@ const Home = () => {
 
             <RowOfProducts category="hoodies & jackets" isHomePage={true} />
 
-            <Row className="p-2">
-                <Col md={6} className="mt-2">
-                    <Col md={12} className="d-flex flex-column justify-content-end align-items-end p-4 gap-2" style={{
-                        backgroundImage: `url(${women})`,
-                        backgroundSize: "cover",
-                        height: "90vh"}}>
-                        <h1 className="display-5 fw-bold text-uppercase text-light">Women</h1>
-                        <Button variant="light" size="lg" type="button" className="fw-bold px-4 text-uppercase">Shop</Button>
-                    </Col>
-                </Col>
-                <Col md={6} className="mt-2">
-                        <Col md={12} className="text-start p-4 gap-2" style={{
-                            backgroundImage: `url(${men})`,
-                            backgroundSize: "cover",
-                            backgroundPosition: "center",
-                            height: "90vh"}}>
-                            <h1 className="display-5 fw-bold text-uppercase text-light">Men</h1>
-                            <Button variant="light" size="lg" type="button" className="fw-bold px-4 text-uppercase">Shop</Button>
-                        </Col>
-                </Col>
-            </Row>
-        </Container>
-    );
-}
+      <Row className="p-2">
+        <Col md={6} className="mt-2">
+          <Col
+            md={12}
+            className="d-flex flex-column justify-content-end align-items-end p-4 gap-2"
+            style={{
+              backgroundImage: `url(${women})`,
+              backgroundSize: "cover",
+              height: "90vh",
+            }}
+          >
+            <h1 className="display-5 fw-bold text-uppercase text-light">
+              Women
+            </h1>
+            <Button
+              variant="light"
+              size="lg"
+              type="button"
+              className="fw-bold px-4 text-uppercase"
+            >
+              Shop
+            </Button>
+          </Col>
+        </Col>
+        <Col md={6} className="mt-2">
+          <Col
+            md={12}
+            className="text-start p-4 gap-2"
+            style={{
+              backgroundImage: `url(${men})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              height: "90vh",
+            }}
+          >
+            <h1 className="display-5 fw-bold text-uppercase text-light">Men</h1>
+            <Button
+              variant="light"
+              size="lg"
+              type="button"
+              className="fw-bold px-4 text-uppercase"
+            >
+              Shop
+            </Button>
+          </Col>
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
 export default Home;
