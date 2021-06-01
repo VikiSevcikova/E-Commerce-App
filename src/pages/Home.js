@@ -1,10 +1,12 @@
 import React from 'react';
-import banner from '../../assets/banner.png';
-import women from '../../assets/women.jpg';
-import men from '../../assets/men.jpg';
-import onsideimage from '../../assets/onsideimage.jpg';
-import ProductCard from '../../components/productCard/ProductCard';
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
+
+import banner from '../assets/banner.png';
+import women from '../assets/women.jpg';
+import men from '../assets/men.jpg';
+import onsideimage from '../assets/onsideimage.jpg';
+
+import ProductCard from '../components/productCard/ProductCard';
 
 const Home = () => {
 

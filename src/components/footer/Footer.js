@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {FaRegHandPeace, FaInstagramSquare, FaFacebookSquare, FaTwitterSquare, FaCcVisa, FaCcStripe, FaCcMastercard} from 'react-icons/fa';
 
 const Footer = () => {
@@ -34,10 +35,10 @@ const Footer = () => {
                             <h6 className="text-uppercase fw-bold">My Account</h6>
                             <ul className="list-unstyled">
                                 <li>
-                                    <a className="link-secondary text-decoration-none" href="#">Login</a>
+                                    <Link to="/signin" className="link-secondary text-decoration-none">Login</Link>
                                 </li>
                                 <li>
-                                    <a className="link-secondary text-decoration-none" href="#">Register</a>
+                                    <Link to="/signin" className="link-secondary text-decoration-none">Register</Link>
                                 </li>
                             </ul>
                         </div>

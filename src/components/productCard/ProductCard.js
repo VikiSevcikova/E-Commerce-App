@@ -1,7 +1,9 @@
 import React from 'react';
-import product from '../../assets/product1.jpg';
-import './ProductCard.css';
 import { Col, Button, Card, ButtonToolbar } from "react-bootstrap";
+
+import product from '../../assets/product1.jpg';
+
+import './ProductCard.css';
 
 const ProductCard = () => {
 
