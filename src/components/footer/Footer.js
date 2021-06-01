@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {FaRegHandPeace, FaInstagramSquare, FaFacebookSquare, FaTwitterSquare, FaCcVisa, FaCcStripe, FaCcMastercard} from 'react-icons/fa';
 
 const Footer = () => {
 
     return(
         <>
-            <footer className="footer mt-5 px-2">
+            <footer className="footer mt-5 ps-3">
                 <div className="container">
-                    <div className="row">
+                    <div className="row px-0 mx-0">
                         <div className="col-md">
                             <h6 className="text-uppercase fw-bold">Help</h6>
                             <ul className="list-unstyled">
@@ -34,10 +35,10 @@ const Footer = () => {
                             <h6 className="text-uppercase fw-bold">My Account</h6>
                             <ul className="list-unstyled">
                                 <li>
-                                    <a className="link-secondary text-decoration-none" href="#">Login</a>
+                                    <Link to="/signin" className="link-secondary text-decoration-none">Login</Link>
                                 </li>
                                 <li>
-                                    <a className="link-secondary text-decoration-none" href="#">Register</a>
+                                    <Link to="/signin" className="link-secondary text-decoration-none">Register</Link>
                                 </li>
                             </ul>
                         </div>
@@ -70,7 +71,7 @@ const Footer = () => {
                             </ul>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row px-0 mx-0">
                         <div className="col-12">
                             <div className="copyright border-top mt-5 pt-5">
                                 <p>© 2021 | <FaRegHandPeace/>Brand</p>
