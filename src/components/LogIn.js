@@ -20,7 +20,9 @@ const LogIn = (props) => {
 
     try {
       var response = await axios.post(url, loginFormData);
-      var response2 = await axios.get("http://localhost:4000/users/me");
+      var response2 = await axios.get(
+        "https://e-commerce-api.belzaondrej.com/users/me"
+      );
       console.log(response2.data);
       alert("Hi, you were logged in.");
     } catch (error) {
