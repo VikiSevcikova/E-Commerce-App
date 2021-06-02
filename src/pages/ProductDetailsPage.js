@@ -3,27 +3,25 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col, Image, Accordion, Card, Carousel, CarouselItem } from "react-bootstrap";
 
-import p from "../assets/product1.jpg";
 import RowOfProducts from "../components/RowOfProducts";
 import ProductDetailsForm from "../components/ProductDetailsForm";
 import ProductCarousel from "../components/ProductCarousel";
 
 import "../scss/ProductDetailsPage.scss";
 
-const ProductDetailsPage = () => {
+const ProductDetailsPage = ({bag, setBag}) => {
     const [product, setProduct] = useState(null);
     const { id } = useParams();
 
     useEffect(() => {
         getProduct();
-    }, []);
+    }, [id]);
 
     const getProduct = async () => {
         const url = `https://e-commerce-api.belzaondrej.com/products/${id}`;
         console.log(url+id);
         try {
           var response = await axios.get(url);
-          console.log(response.data);
           setProduct(response.data);
         } catch (error) {
           console.error(error);
@@ -32,8 +30,8 @@ const ProductDetailsPage = () => {
 
     return (
         <Container className="py-2">
-            <Row className="d-flex px-0 mx-0">
-                {product && <>
+            {product && <>
+                <Row className="d-flex px-0 mx-0">
                     <Col md={8}>
                         <Row>
                             <ProductCarousel previewImage={product.previewImage} detailImages={product.detailImages}/>
@@ -50,12 +48,12 @@ const ProductDetailsPage = () => {
                         </Accordion>
                     </Col>
                     <Col md={4}>
-                        <ProductDetailsForm product={product}/>
+                        <ProductDetailsForm product={product} bag={bag} setBag={setBag}/>
                     </Col>
-                </>}
-            </Row>
-            <RowOfProducts category="you might like"/>
+                </Row>
 
+                <RowOfProducts key={"might-like-"+product.id} productId={product.id} category={product.subcategory.name} bag={bag} setBag={setBag}/>
+            </>}
         </Container>
     );
 }
