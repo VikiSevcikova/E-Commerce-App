@@ -8,7 +8,7 @@ import onsideimage from '../assets/onsideimage.jpg';
 
 import RowOfProducts from '../components/RowOfProducts';
 
-const Home = () => {
+const Home = ({bag, setBag}) => {
     return(
         <Container fluid>
             <Row className="justify-content-center" style={{
@@ -21,8 +21,7 @@ const Home = () => {
                     <Button variant="dark" size="lg" type="button" className="px-4 text-uppercase">Shop</Button>
                 </Col>
             </Row>
-
-            <RowOfProducts category="bottoms & leggings" isHomePage={true} />
+            <RowOfProducts category="bottoms & leggings" isHomePage={true} bag={bag} setBag={setBag} />
 
             <Row className="p-2 align-items-center" >
                 <Col md={6}>
@@ -37,53 +36,53 @@ const Home = () => {
 
             <RowOfProducts category="hoodies & jackets" isHomePage={true} />
 
-      <Row className="p-2">
-        <Col md={6} className="mt-2">
-          <Col
-            md={12}
-            className="d-flex flex-column justify-content-end align-items-end p-4 gap-2"
-            style={{
-              backgroundImage: `url(${women})`,
-              backgroundSize: "cover",
-              height: "90vh",
-            }}
-          >
-            <h1 className="display-5 fw-bold text-uppercase text-light">
-              Women
-            </h1>
-            <Button
-              variant="light"
-              size="lg"
-              type="button"
-              className="fw-bold px-4 text-uppercase"
-            >
-              Shop
-            </Button>
-          </Col>
-        </Col>
-        <Col md={6} className="mt-2">
-          <Col
-            md={12}
-            className="text-start p-4 gap-2"
-            style={{
-              backgroundImage: `url(${men})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              height: "90vh",
-            }}
-          >
-            <h1 className="display-5 fw-bold text-uppercase text-light">Men</h1>
-            <Button
-              variant="light"
-              size="lg"
-              type="button"
-              className="fw-bold px-4 text-uppercase"
-            >
-              Shop
-            </Button>
-          </Col>
-        </Col>
-      </Row>
+            <Row className="p-2">
+              <Col md={6} className="mt-2">
+                <Col
+                  md={12}
+                  className="d-flex flex-column justify-content-end align-items-end p-4 gap-2"
+                  style={{
+                    backgroundImage: `url(${women})`,
+                    backgroundSize: "cover",
+                    height: "90vh",
+                  }}
+                >
+                  <h1 className="display-5 fw-bold text-uppercase text-light">
+                    Women
+                  </h1>
+                  <Button
+                    variant="light"
+                    size="lg"
+                    type="button"
+                    className="fw-bold px-4 text-uppercase"
+                  >
+                    Shop
+                  </Button>
+                </Col>
+              </Col>
+              <Col md={6} className="mt-2">
+                <Col
+                  md={12}
+                  className="text-start p-4 gap-2"
+                  style={{
+                    backgroundImage: `url(${men})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    height: "90vh",
+                  }}
+                >
+                  <h1 className="display-5 fw-bold text-uppercase text-light">Men</h1>
+                  <Button
+                    variant="light"
+                    size="lg"
+                    type="button"
+                    className="fw-bold px-4 text-uppercase"
+                  >
+                    Shop
+                  </Button>
+                </Col>
+              </Col>
+            </Row>
     </Container>
   );
 };

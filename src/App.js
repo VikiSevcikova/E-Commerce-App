@@ -16,22 +16,37 @@ import "./scss/App.scss";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
+import ShoppingBag from "./pages/ShoppingBagPage";
 
 function App() {
-  const [cart, setCart] = useState([]);
+  const [bag, setBag] = useState([]);
+  console.log(bag);
   return (
     <>
       <Router>
         <div className="App">
-          <Navbar />
+          <Navbar bag={bag} />
           <Switch>
-            <Route path="/" exact component={Home} />
+            <Route
+              path="/"
+              exact
+              render={(props) => <Home {...props} bag={bag} setBag={setBag} />}
+            />
             <Route path="/signin" exact component={SignInPage} />
             <Route
               path="/products/:id"
               exact
-              component={ProductDetailsPage}
+              render={(props) => (
+                <ProductDetailsPage {...props} bag={bag} setBag={setBag} />
+              )}
               routerProps={":id"}
+            />
+            <Route
+              path="/shopping-bag"
+              exact
+              render={(props) => (
+                <ShoppingBag {...props} bag={bag} setBag={setBag} />
+              )}
             />
             <Route path="/allproducts/" exact component={ProductsPage} />
           </Switch>

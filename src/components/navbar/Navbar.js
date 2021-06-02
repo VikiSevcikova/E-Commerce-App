@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaRegHandPeace, FaSearch, FaUserAlt, FaShoppingBag } from "react-icons/fa";
 
 import './Navbar.css';
 
-const Navbar = () => {
+const Navbar = ({bag}) => {
     return(
         <>
         <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top px-2">
@@ -69,7 +69,7 @@ const Navbar = () => {
                             <Link to="/signin" className="nav-link"><FaUserAlt/></Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link shopping-bag" href="#"><FaShoppingBag/><div className="items">800</div></a>
+                            <Link to="/shopping-bag" className="nav-link shopping-bag"><FaShoppingBag/>{bag.length > 0 && <div className="items">{bag.length}</div>}</Link>
                         </li>
                     </ul>
                 </div>
