@@ -9,7 +9,7 @@ const ProductsFilter = () => {
   return (
     <>
       <div className="productBanner">
-        <img src="image/productImage.jpg" alt="productBanner" />
+        <img src="../image/productImage.jpg" alt="productBanner" />
         <h2>PRODUCT</h2>
       </div>
       <Container className="filterContianer">

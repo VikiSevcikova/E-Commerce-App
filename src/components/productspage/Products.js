@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Card, ButtonToolbar, Button } from "react-bootstrap";
 import axios from "axios";
+import ProductCard from "../productCard/ProductCard";
 
 const Products = (props) => {
   //set useState to undefined first
@@ -30,6 +31,7 @@ const Products = (props) => {
   const renderProducts = (item, i) => {
     return (
       <div key={i} className="eachProduct">
+        <ProductCard />
         <div>
           <Card className="border-0" style={{ width: "100%" }} href="#">
             <div className="product-image">
