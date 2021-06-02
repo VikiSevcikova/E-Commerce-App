@@ -16,7 +16,7 @@ import "./scss/App.scss";
 
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import ProductDetailsPage from "./pages/ProductDetailsPage";
-import ShoppingBag from "./pages/ShoppingBag";
+import ShoppingBag from "./pages/ShoppingBagPage";
 
 function App() {
   const [bag, setBag] = useState([]);
