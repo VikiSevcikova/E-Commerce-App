@@ -4,7 +4,7 @@ import { FaPlus, FaMinus } from "react-icons/fa";
 
 import "../scss/ProductDetailsPage.scss";
 
-const ProductDetailsForm = ({product}) => {
+const ProductDetailsForm = ({product, bag, setBag}) => {
     const [quantity, setQuantity] = useState(0);
     const [size, setSize] = useState(null);
 
@@ -14,11 +14,10 @@ const ProductDetailsForm = ({product}) => {
         { name: 'M', value: 'm' },
         { name: 'L', value: 'l' },
         { name: 'XL', value: 'xl' },
-      ];
+    ];
 
     const handleSizeChange = (e) => {
         setSize(e.target.value);
-        console.log(e.target.value);
     }
 
     const handlePlusQuantityChange = () => {
@@ -29,10 +28,12 @@ const ProductDetailsForm = ({product}) => {
         if(quantity > 0) setQuantity(quantity - 1);
     }
 
-    const handleSubmit = () => {
-        //add items to cart
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        //add items to bag
+        const productToAdd = {name: product.name, price: product.price, size: size, quantity: quantity};
         if(quantity > 0){
-
+            setBag([...bag, productToAdd]);
         }
     }
     
@@ -68,7 +69,7 @@ return (
                 <Button onClick={handlePlusQuantityChange} value="plus" type="button" variant="outline-dark" size="sm" className="ms-3"><FaPlus/></Button>
             </ButtonToolbar>
 
-            <Button type="submit" variant="dark" size="lg">ADD TO CART</Button>
+            <Button type="submit" variant="dark" size="lg">ADD TO BAG</Button>
         </Form>
     </>
   );
