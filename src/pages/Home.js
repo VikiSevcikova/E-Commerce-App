@@ -6,7 +6,6 @@ import women from '../assets/women.jpg';
 import men from '../assets/men.jpg';
 import onsideimage from '../assets/onsideimage.jpg';
 
-import ProductCard from '../components/productCard/ProductCard';
 import RowOfProducts from '../components/RowOfProducts';
 
 const Home = () => {
@@ -16,9 +15,9 @@ const Home = () => {
                         backgroundImage: `url(${banner})`,
                         backgroundSize: "cover",
                         height: "90vh"}}>
-                <Col md={4} className="d-flex flex-column text-center justify-content-end justify-content-md-center align-items-end align-items-md-center p-5">
-                    <h1 className="fw-bold text-uppercase">Purpose</h1>
-                    <p className="fw-bold text-uppercase">Find your why and you will find a way to make it happen.</p>
+                <Col md={4} className="d-flex flex-column text-center justify-content-end justify-content-md-center align-items-end align-items-md-center p-2">
+                    <h1 className="text-dark bg-light fw-bold text-uppercase p-2">Purpose</h1>
+                    <p className="text-dark bg-light fw-bold text-uppercase text-md-center text-end p-2">Find your why and you will find a way to make it happen.</p>
                     <Button variant="dark" size="lg" type="button" className="px-4 text-uppercase">Shop</Button>
                 </Col>
             </Row>
@@ -32,7 +31,7 @@ const Home = () => {
                 <Col md={6} className="text-center">
                     <h3 className="fw-bold text-uppercase">Join Us</h3>
                     <p className="fw-bold text-uppercase">To get all the member exclusives.</p>
-                    <Button href="#" variant="dark" size="lg" type="button" className="px-4 text-uppercase">SIGN IN</Button>
+                    <Button href="/signin" variant="dark" size="lg" type="button" className="px-4 text-uppercase">SIGN IN</Button>
                 </Col>
             </Row>
 

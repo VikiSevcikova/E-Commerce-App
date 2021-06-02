@@ -13,10 +13,10 @@ return (
             {isHomePage && <a className="link-dark fw-bold" href="#">View all</a>}
         </div>
         <Row className="px-0 mx-0">
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
+            <ProductCard id="3ff1af05-3027-484f-bd93-9f77d81ccef6"/>
+            <ProductCard id="3ff1af05-3027-484f-bd93-9f77d81ccef6"/>
+            <ProductCard id="3ff1af05-3027-484f-bd93-9f77d81ccef6"/>
+            <ProductCard id="3ff1af05-3027-484f-bd93-9f77d81ccef6"/>
         </Row>
     </Container>    
   );

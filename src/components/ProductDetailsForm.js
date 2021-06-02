@@ -3,9 +3,8 @@ import { Col, Button, ButtonToolbar, ButtonGroup, ToggleButton, Form } from "rea
 import { FaPlus, FaMinus } from "react-icons/fa";
 
 import "../scss/ProductDetailsPage.scss";
-import RowOfProducts from "./RowOfProducts";
 
-const ProductDetailsForm = () => {
+const ProductDetailsForm = ({product}) => {
     const [quantity, setQuantity] = useState(0);
     const [size, setSize] = useState(null);
 
@@ -39,41 +38,38 @@ const ProductDetailsForm = () => {
     
 return (
     <>
-        <Col md={6}>
-            <Form onSubmit={handleSubmit} className="sticky-top">
-                <h2 className="mb-3 fw-bold">Title</h2>
-                <h2 className="mb-3">$20.00 CAD</h2>
+        <Form onSubmit={handleSubmit} className="sticky-top px-3">
+            <h2 className="mb-3 fw-bold">{product.name}</h2>
+            <h2 className="mb-3">${product.price} CAD</h2>
 
-                <h5>Select Size:</h5>
-                <ButtonGroup className="mb-3">
-                    {sizes.map((s) => (
-                    <ToggleButton
-                        key={s.value}
-                        id={`size-${s.value}`}
-                        type="radio"
-                        variant="outline-dark"
-                        className="rounded me-1"
-                        name="size"
-                        value={s.value}
-                        checked={size === s.value}
-                        onChange={handleSizeChange}
-                    >
-                        {s.name}
-                    </ToggleButton>
-                    ))}
-                </ButtonGroup>
+            <h5>Select Size:</h5>
+            <ButtonGroup className="mb-3">
+                {sizes.map((s) => (
+                <ToggleButton
+                    key={s.value}
+                    id={`size-${s.value}`}
+                    type="radio"
+                    variant="outline-dark"
+                    className="rounded me-1"
+                    name="size"
+                    value={s.value}
+                    checked={size === s.value}
+                    onChange={handleSizeChange}
+                >
+                    {s.name}
+                </ToggleButton>
+                ))}
+            </ButtonGroup>
 
-                <h5>Quantity:</h5>
-                <ButtonToolbar className="mb-3 text-center align-items-center well">
-                    <Button onClick={handleMinusQuantityChange} value="minus" type="button" variant="outline-dark" size="sm" className="me-3"><FaMinus/></Button>
-                    <h4 className="my-0">{quantity}</h4>
-                    <Button onClick={handlePlusQuantityChange} value="plus" type="button" variant="outline-dark" size="sm" className="ms-3"><FaPlus/></Button>
-                </ButtonToolbar>
+            <h5>Quantity:</h5>
+            <ButtonToolbar className="mb-3 text-center align-items-center well">
+                <Button onClick={handleMinusQuantityChange} value="minus" type="button" variant="outline-dark" size="sm" className="me-3"><FaMinus/></Button>
+                <h4 className="my-0">{quantity}</h4>
+                <Button onClick={handlePlusQuantityChange} value="plus" type="button" variant="outline-dark" size="sm" className="ms-3"><FaPlus/></Button>
+            </ButtonToolbar>
 
-                <Button type="submit" variant="dark" size="lg">ADD TO CART</Button>
-            </Form>
-        </Col>
-        <RowOfProducts category="you might like"/>
+            <Button type="submit" variant="dark" size="lg">ADD TO CART</Button>
+        </Form>
     </>
   );
 }
