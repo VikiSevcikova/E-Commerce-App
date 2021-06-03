@@ -24,22 +24,22 @@ const ShoppingBagItem = ({ item, bag, setBag }) => {
   return (
     <>
         <Row className="py-2 border">
-            <Col xs={8}>
+            <Col xs={4} md={8}>
                 <Row>
-                    <Col xs={4}>
+                    <Col md={4}>
                         <Image width="100%" src={item.previewImage}/>
                     </Col>
-                    <Col xs={8}>
+                    <Col md={8}>
                         <p>{item.name}</p>
                         <p>{item.size}</p>
                         <p>${item.price} CAD</p>
                     </Col>
                 </Row>
             </Col>
-            <Col xs={2} className="d-flex justify-content-center align-items-center">
+            <Col xs={4} md={2} className="d-flex justify-content-center align-items-center">
               <QuantityButtons quantity={quantity} setQuantity={setQuantity}/>
             </Col>
-            <Col xs={2} className="d-flex justify-content-center align-items-center">${item.price * quantity} CAD</Col>
+            <Col xs={4} md={2} className="d-flex justify-content-center align-items-center">${item.price * quantity} CAD</Col>
         </Row>
     </>
   );

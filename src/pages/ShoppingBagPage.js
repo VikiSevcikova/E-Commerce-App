@@ -26,19 +26,19 @@ console.log(total);
                 :
                 <>
                     <Row className="bg-light py-2 border text-uppercase">
-                        <Col xs={8}>Item</Col>
-                        <Col xs={2} className="text-center">Quantity</Col>
-                        <Col xs={2} className="text-center">Subtotal</Col>
+                        <Col xs={4} md={8}>Item</Col>
+                        <Col xs={4} md={2} className="text-center">Quantity</Col>
+                        <Col xs={4} md={2} className="text-center">Subtotal</Col>
                     </Row>
                     {bag.map((item) => 
                         <ShoppingBagItem key={item.id} item={item} bag={bag} setBag={setBag}/>
                     )}
                     <Row className="py-2 border fw-bold text-uppercase d-flex justify-content-end">
-                        <Col xs={2}>Total</Col>
-                        <Col xs={2} className="text-center">${total} CAD</Col>
+                        <Col xs={4} md={2}>Total</Col>
+                        <Col xs={4} md={2} className="text-center">${total} CAD</Col>
                     </Row>
                     <Row className="d-flex justify-content-end my-3">
-                        <Col xs={2}>
+                        <Col xs md={2}>
                             <Button variant="dark" className="w-100">Checkout</Button>
                         </Col>
                     </Row>

@@ -43,7 +43,7 @@ const ProductCard = ({ product, bag, setBag }) => {
                         <h6 className="text-uppercase fw-bold">Quick Add</h6>
                         <ButtonToolbar className="text-center well">
                             {sizes.map((s)=>
-                                <Button onClick={addToBag} type="button" variant="outline-dark" size="sm" className="me-1" value={s.value}>{s.name}</Button>
+                                <Button key={s.value} onClick={addToBag} type="button" variant="outline-dark" size="sm" className="me-1" value={s.value}>{s.name}</Button>
                             )}
                         </ButtonToolbar>
                     </div>

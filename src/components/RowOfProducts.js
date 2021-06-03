@@ -28,8 +28,8 @@ const RowOfProducts = ({productId, category, isHomePage, bag, setBag}) => {
                 <h4 className="fw-bold text-uppercase">{isHomePage ? category : "You might like"}</h4>
                 {isHomePage && <a className="link-dark fw-bold" href="#">View all</a>}
             </div>
-            <Row className="px-0 mx-0">
-                {filteredProducts && filteredProducts.map((f) => {
+            <Row>
+                {filteredProducts && filteredProducts.map((f,i) => {
                     const product = {id: f.id, name: f.name, price: f.price, previewImage: f.previewImage };
                     return <ProductCard key={f.id} product={product} bag={bag} setBag={setBag}/>
                 }

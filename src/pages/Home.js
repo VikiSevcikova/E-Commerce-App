@@ -10,7 +10,7 @@ import RowOfProducts from '../components/RowOfProducts';
 
 const Home = ({bag, setBag}) => {
     return(
-        <Container fluid>
+        <Container fluid className="px-0">
             <Row className="justify-content-center" style={{
                         backgroundImage: `url(${banner})`,
                         backgroundSize: "cover",
@@ -59,6 +59,7 @@ const Home = ({bag, setBag}) => {
                       size="lg"
                       type="button"
                       className="fw-bold px-4 text-uppercase"
+                      href="/women"
                     >
                       Shop
                     </Button>
@@ -81,6 +82,7 @@ const Home = ({bag, setBag}) => {
                       size="lg"
                       type="button"
                       className="fw-bold px-4 text-uppercase"
+                      href="/men"
                     >
                       Shop
                     </Button>
