@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./scss/App.scss";
 
@@ -19,6 +19,19 @@ import ShoppingBag from "./pages/ShoppingBagPage";
 
 function App() {
   const [bag, setBag] = useState([]);
+
+  useEffect(()=>{
+    if(localStorage.getItem('bag') === null){
+      localStorage.setItem('bag', JSON.stringify(bag));
+    }else{
+      setBag(JSON.parse(localStorage.getItem('bag')));
+    }
+  },[]);
+
+  useEffect(()=>{
+    localStorage.setItem('bag', JSON.stringify(bag));
+  },[bag]);
+
   return (
     <>
     <Router>

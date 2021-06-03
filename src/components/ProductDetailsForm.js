@@ -22,22 +22,20 @@ const ProductDetailsForm = ({product, bag, setBag}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        //add items to bag
+        //add item to bag
         const productToAdd = {id:`${product.id}-${size}`, name: product.name, previewImage: product.previewImage, price: product.price, size: size, quantity: quantity};
-        if(size && quantity > 0){
-            if(bag.some((b) => b.id === `${product.id}-${size}`)){
-                setBag(bag.map(i => {
-                    if(i.id === `${product.id}-${size}`){
-                        return {
-                            ...i, quantity: i.quantity + quantity
-                        }
+        if(!size || quantity <= 0) return;
+        if(bag.some((b) => b.id === `${product.id}-${size}`)){
+            setBag(bag.map(i => {
+                if(i.id === `${product.id}-${size}`){
+                    return {
+                        ...i, quantity: i.quantity + quantity
                     }
-                    return i;
-                }));
-            
-            }else{
-                setBag([...bag, productToAdd]);
-            }
+                }
+                return i;
+            }));
+        }else{
+            setBag([...bag, productToAdd]);
         }
     }
     

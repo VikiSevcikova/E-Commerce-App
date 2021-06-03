@@ -16,27 +16,34 @@ console.log(total);
          <Container>
             <Row>
                 <Col>
-                    <h2 className="text-uppercase text-center">Shopping Bag</h2>
+                    <h2 className="text-uppercase text-center my-3">Shopping Bag</h2>
                 </Col>
             </Row>
-
-            <Row className="bg-light py-2 border text-uppercase">
-                <Col xs={8}>Item</Col>
-                <Col xs={2} className="text-center">Quantity</Col>
-                <Col xs={2} className="text-center">Subtotal</Col>
-            </Row>
-            {bag && bag.map((item) => 
-                <ShoppingBagItem key={item.id} item={item} bag={bag} setBag={setBag}/>
-            )}
-            <Row className="py-2 border fw-bold text-uppercase d-flex justify-content-end">
-                <Col xs={2}>Total</Col>
-                <Col xs={2} className="text-center">${total} CAD</Col>
-            </Row>
-            <Row className="d-flex justify-content-end my-3">
-                <Col xs={4}>
-                    <Button variant="dark" block>Checkout</Button>
-                </Col>
-            </Row>
+            {bag.length === 0 ? 
+                <Row>
+                    <h5>Your bag is currently empty.</h5>
+                </Row>
+                :
+                <>
+                    <Row className="bg-light py-2 border text-uppercase">
+                        <Col xs={8}>Item</Col>
+                        <Col xs={2} className="text-center">Quantity</Col>
+                        <Col xs={2} className="text-center">Subtotal</Col>
+                    </Row>
+                    {bag.map((item) => 
+                        <ShoppingBagItem key={item.id} item={item} bag={bag} setBag={setBag}/>
+                    )}
+                    <Row className="py-2 border fw-bold text-uppercase d-flex justify-content-end">
+                        <Col xs={2}>Total</Col>
+                        <Col xs={2} className="text-center">${total} CAD</Col>
+                    </Row>
+                    <Row className="d-flex justify-content-end my-3">
+                        <Col xs={2}>
+                            <Button variant="dark" className="w-100">Checkout</Button>
+                        </Col>
+                    </Row>
+                </>
+            }
         </Container>
     </>
   );
