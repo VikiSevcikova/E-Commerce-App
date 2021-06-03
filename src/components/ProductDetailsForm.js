@@ -1,39 +1,43 @@
 import React, { useState } from "react";
-import { Col, Button, ButtonToolbar, ButtonGroup, ToggleButton, Form } from "react-bootstrap";
-import { FaPlus, FaMinus } from "react-icons/fa";
+import { Button, ButtonGroup, ToggleButton, Form } from "react-bootstrap";
 
 import "../scss/ProductDetailsPage.scss";
+import QuantityButtons from "./QuantityButtons";
 
 const ProductDetailsForm = ({product, bag, setBag}) => {
     const [quantity, setQuantity] = useState(0);
     const [size, setSize] = useState(null);
 
     const sizes = [
-        { name: 'XS', value: 'xs' },
-        { name: 'S', value: 's' },
-        { name: 'M', value: 'm' },
-        { name: 'L', value: 'l' },
-        { name: 'XL', value: 'xl' },
+        { name: 'XS', value: 'XS' },
+        { name: 'S', value: 'S' },
+        { name: 'M', value: 'M' },
+        { name: 'L', value: 'L' },
+        { name: 'XL', value: 'XL' },
     ];
 
     const handleSizeChange = (e) => {
         setSize(e.target.value);
     }
 
-    const handlePlusQuantityChange = () => {
-        setQuantity(quantity + 1);
-    }
-
-    const handleMinusQuantityChange = () => {
-        if(quantity > 0) setQuantity(quantity - 1);
-    }
-
     const handleSubmit = (e) => {
         e.preventDefault();
         //add items to bag
-        const productToAdd = {name: product.name, price: product.price, size: size, quantity: quantity};
-        if(quantity > 0){
-            setBag([...bag, productToAdd]);
+        const productToAdd = {id:`${product.id}-${size}`, name: product.name, previewImage: product.previewImage, price: product.price, size: size, quantity: quantity};
+        if(size && quantity > 0){
+            if(bag.some((b) => b.id === `${product.id}-${size}`)){
+                setBag(bag.map(i => {
+                    if(i.id === `${product.id}-${size}`){
+                        return {
+                            ...i, quantity: i.quantity + quantity
+                        }
+                    }
+                    return i;
+                }));
+            
+            }else{
+                setBag([...bag, productToAdd]);
+            }
         }
     }
     
@@ -63,11 +67,7 @@ return (
             </ButtonGroup>
 
             <h5>Quantity:</h5>
-            <ButtonToolbar className="mb-3 text-center align-items-center well">
-                <Button onClick={handleMinusQuantityChange} value="minus" type="button" variant="outline-dark" size="sm" className="me-3"><FaMinus/></Button>
-                <h4 className="my-0">{quantity}</h4>
-                <Button onClick={handlePlusQuantityChange} value="plus" type="button" variant="outline-dark" size="sm" className="ms-3"><FaPlus/></Button>
-            </ButtonToolbar>
+            <QuantityButtons quantity={quantity} setQuantity={setQuantity}/>
 
             <Button type="submit" variant="dark" size="lg">ADD TO BAG</Button>
         </Form>

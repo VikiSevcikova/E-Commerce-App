@@ -2,21 +2,34 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Col, Button, Card, ButtonToolbar } from "react-bootstrap";
 
-import './ProductCard.css';
+import '../../scss/ProductCard.scss';
 
 const ProductCard = ({ product, bag, setBag }) => {
     const sizes = [
-        { name: 'XS', value: 'xs' },
-        { name: 'S', value: 's' },
-        { name: 'M', value: 'm' },
-        { name: 'L', value: 'l' },
-        { name: 'XL', value: 'xl' },
+        { name: 'XS', value: 'XS' },
+        { name: 'S', value: 'S' },
+        { name: 'M', value: 'M' },
+        { name: 'L', value: 'L' },
+        { name: 'XL', value: 'XL' },
     ];
 
     const addToBag = (e) => {
         e.preventDefault();
-        const productToAdd = {name: product.name, price: product.price, size: e.target.value, quantity: 1};
-        setBag([...bag, productToAdd]);
+        const size = e.target.value;
+        const productToAdd = {id:`${product.id}-${size}`, name: product.name, previewImage: product.previewImage, price: product.price, size: e.target.value, quantity: 1};
+        if(bag.some((b) => b.id === `${product.id}-${size}`)){
+            setBag(bag.map(i => {
+                if(i.id === `${product.id}-${size}`){
+                    return {
+                        ...i, quantity: i.quantity + 1
+                    }
+                }
+                return i;
+            }));
+        
+        }else{
+            setBag([...bag, productToAdd]);
+        }
     }
     
     return(

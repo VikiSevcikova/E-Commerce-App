@@ -1,27 +1,46 @@
-import React from "react";
-import { Col, Container, Image, Row } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Col, Image, Row } from "react-bootstrap";
+import QuantityButtons from "./QuantityButtons";
 
-const ShoppingBagItem = ({}) => {
+const ShoppingBagItem = ({ item, bag, setBag }) => {
+  const [quantity,setQuantity] = useState(item.quantity);
+     
+    useEffect(()=>{
+        if(quantity === 0){
+            setBag(bag.filter(i => i.id !== item.id));
+        }else{
+            setBag(bag.map(i => {
+                if(i.id === item.id){
+                    return {
+                        ...i, quantity: quantity
+                    }
+                }
+                return i;
+            }));
+        }
+        console.log(bag)
+    }, [quantity]);
 
   return (
     <>
-        <Row>
-            <Col xs={6}>
+        <Row className="py-2 border">
+            <Col xs={8}>
                 <Row>
                     <Col xs={4}>
-                        <Image width="100%" />
+                        <Image width="100%" src={item.previewImage}/>
                     </Col>
                     <Col xs={8}>
-                        <p>Title</p>
-                        <p>Title</p>
-                        <p>Title</p>
+                        <p>{item.name}</p>
+                        <p>{item.size}</p>
+                        <p>${item.price} CAD</p>
                     </Col>
                 </Row>
             </Col>
-            <Col xs={3}>Quantity</Col>
-            <Col xs={3}>Subtotal</Col>
+            <Col xs={2} className="d-flex justify-content-center align-items-center">
+              <QuantityButtons quantity={quantity} setQuantity={setQuantity}/>
+            </Col>
+            <Col xs={2} className="d-flex justify-content-center align-items-center">${item.price * quantity} CAD</Col>
         </Row>
-           
     </>
   );
 }

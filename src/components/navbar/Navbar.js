@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaRegHandPeace, FaSearch, FaUserAlt, FaShoppingBag } from "react-icons/fa";
 
-import './Navbar.css';
+import '../../scss/Navbar.scss';
 
 const Navbar = ({bag}) => {
     return(

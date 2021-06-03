@@ -3,7 +3,6 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import React, { useState } from "react";
 
 import "./scss/App.scss";
-import "./App.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -20,7 +19,6 @@ import ShoppingBag from "./pages/ShoppingBagPage";
 
 function App() {
   const [bag, setBag] = useState([]);
-  console.log(bag);
   return (
     <>
     <Router>
