@@ -93,6 +93,7 @@ const CreateAccount = (props) => {
           />
           <div className="newsletter">
             <input
+              style={{ display: "inline" }}
               type="checkbox"
               name="newsletter"
               value={sendNewsletter}

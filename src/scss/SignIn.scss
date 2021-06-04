@@ -1,6 +1,5 @@
 @import "variable";
 
-// Log In Style
 .bgStyle {
   transition: all 0.3s;
   background: #fff;
@@ -76,8 +75,6 @@ input {
   margin-left: 0.4em;
 }
 
-// Create Account Style
-
 .newCustomerTitle {
   border-bottom: 1px solid;
   text-align: center;
@@ -99,4 +96,8 @@ input {
   label {
     padding-left: 0.5rem;
   }
+}
+
+.SiginContainer {
+  margin: 3%;
 }

@@ -16,7 +16,7 @@ const Navbar = ({bag}) => {
     const getCategories = async () => {
         const url = `https://e-commerce-api.belzaondrej.com/products/categories`;
         try {
-          var response = await axios.get(url);
+          let response = await axios.get(url);
           setCategories(response.data);
         } catch (error) {
           console.error(error);

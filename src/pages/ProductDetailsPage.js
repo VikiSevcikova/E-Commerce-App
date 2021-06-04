@@ -9,52 +9,63 @@ import ProductCarousel from "../components/ProductCarousel";
 
 import "../scss/ProductDetailsPage.scss";
 
-const ProductDetailsPage = ({bag, setBag}) => {
-    const [product, setProduct] = useState(null);
-    const { id } = useParams();
+const ProductDetailsPage = ({ bag, setBag }) => {
+  const [product, setProduct] = useState(null);
+  const { id } = useParams();
 
-    useEffect(() => {
-        getProduct();
-    }, [id]);
+  useEffect(() => {
+    getProduct();
+  }, [id]);
 
-    const getProduct = async () => {
-        const url = `https://e-commerce-api.belzaondrej.com/products/${id}`;
-        try {
-          var response = await axios.get(url);
-          setProduct(response.data);
-        } catch (error) {
-          console.error(error);
-        }
+  const getProduct = async () => {
+    const url = `https://e-commerce-api.belzaondrej.com/products/${id}`;
+    try {
+      let response = await axios.get(url);
+      setProduct(response.data);
+    } catch (error) {
+      console.error(error);
     }
+  };
 
-    return (
-        <Container className="py-2">
-            {product && <>
-                <Row className="d-flex px-0 mx-0">
-                    <Col md={8}>
-                        <Row>
-                            <ProductCarousel previewImage={product.previewImage} detailImages={product.detailImages}/>
-                        </Row>
-                        <Accordion defaultActiveKey="0" className="mt-3">
-                            <Card color="light" border="light">
-                                <Accordion.Toggle as={Card.Header} eventKey="0">
-                                    Description
-                                </Accordion.Toggle>
-                                <Accordion.Collapse eventKey="0">
-                                <Card.Body>{product.description}</Card.Body>
-                                </Accordion.Collapse>
-                            </Card>
-                        </Accordion>
-                    </Col>
-                    <Col md={4}>
-                        <ProductDetailsForm product={product} bag={bag} setBag={setBag}/>
-                    </Col>
-                </Row>
+  return (
+    <Container className="py-2">
+      {product && (
+        <>
+          <Row className="d-flex px-0 mx-0">
+            <Col md={8}>
+              <Row>
+                <ProductCarousel
+                  previewImage={product.previewImage}
+                  detailImages={product.detailImages}
+                />
+              </Row>
+              <Accordion defaultActiveKey="0" className="mt-3">
+                <Card color="light" border="light">
+                  <Accordion.Toggle as={Card.Header} eventKey="0">
+                    Description
+                  </Accordion.Toggle>
+                  <Accordion.Collapse eventKey="0">
+                    <Card.Body>{product.description}</Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion>
+            </Col>
+            <Col md={4}>
+              <ProductDetailsForm product={product} bag={bag} setBag={setBag} />
+            </Col>
+          </Row>
 
-                <RowOfProducts key={"might-like-"+product.id} productId={product.id} category={product.subcategory.name} bag={bag} setBag={setBag}/>
-            </>}
-        </Container>
-    );
-}
+          <RowOfProducts
+            key={"might-like-" + product.id}
+            productId={product.id}
+            category={product.subcategory.name}
+            bag={bag}
+            setBag={setBag}
+          />
+        </>
+      )}
+    </Container>
+  );
+};
 
 export default ProductDetailsPage;

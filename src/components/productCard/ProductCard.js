@@ -15,7 +15,7 @@ const ProductCard = ({ product, bag, setBag }) => {
     const getSizes = async () => {
         const url = `https://e-commerce-api.belzaondrej.com/products/sizes`;
         try {
-          var response = await axios.get(url);
+          let response = await axios.get(url);
           setSizes(response.data);
         } catch (error) {
           console.error(error);
@@ -24,8 +24,8 @@ const ProductCard = ({ product, bag, setBag }) => {
 
     const addToBag = (e) => {
         e.preventDefault();
-        const size = e.target.value;
-        const productToAdd = {id:`${product.id}-${size}`, name: product.name, previewImage: product.previewImage, price: product.price, size: e.target.value, quantity: 1};
+        let size = e.target.value;
+        let productToAdd = {id:`${product.id}-${size}`, name: product.name, previewImage: product.previewImage, price: product.price, size: e.target.value, quantity: 1};
         if(bag.some((b) => b.id === `${product.id}-${size}`)){
             setBag(bag.map(i => {
                 if(i.id === `${product.id}-${size}`){
@@ -49,7 +49,7 @@ const ProductCard = ({ product, bag, setBag }) => {
                     </Link>
                     <div className="quick-add-overlay rounded py-2 px-2">
                         <h6 className="text-uppercase fw-bold">Quick Add</h6>
-                        <ButtonToolbar className="text-center well">
+                        <ButtonToolbar className="justify-content-center">
                             {sizes && sizes.map((s)=> {
                                 let availability = {};
                                 availability.disabled = product.stock.some(st => st.size === s && st.quantity < 20) ? true : false;
