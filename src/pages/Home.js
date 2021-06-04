@@ -35,6 +35,7 @@ const Home = ({ bag, setBag }) => {
             size="lg"
             type="button"
             className="px-4 text-uppercase"
+            href="/all-products"
           >
             Shop
           </Button>
@@ -97,7 +98,7 @@ const Home = ({ bag, setBag }) => {
                 size="lg"
                 type="button"
                 className="fw-bold px-4 text-uppercase"
-                href="/women"
+                href="/womens"
               >
                 Shop
               </Button>
@@ -122,7 +123,7 @@ const Home = ({ bag, setBag }) => {
                 size="lg"
                 type="button"
                 className="fw-bold px-4 text-uppercase"
-                href="/men"
+                href="/mens"
               >
                 Shop
               </Button>
