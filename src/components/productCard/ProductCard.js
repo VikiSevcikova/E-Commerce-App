@@ -24,6 +24,7 @@ const ProductCard = ({ product, bag, setBag }) => {
 
     const addToBag = (e) => {
         e.preventDefault();
+        if(!bag) return;
         let size = e.target.value;
         let productToAdd = {id:`${product.id}-${size}`, name: product.name, previewImage: product.previewImage, price: product.price, size: e.target.value, quantity: 1};
         if(bag.some((b) => b.id === `${product.id}-${size}`)){

@@ -3,13 +3,15 @@ import axios from "axios";
 import ProductCard from "../productCard/ProductCard";
 import ProductsFilter from "./fillters/ProductsFiltter";
 import { Button, Row, Container } from "react-bootstrap";
+import { useParams } from "react-router";
 
-const Products = (props) => {
+const Products = ({ bag, setBag }) => {
   //set useState to undefined first.
   const [fetchedData, setFetchedData] = useState();
   const [sortedData, setSortedData] = useState();
   const [visible, setVisible] = useState(20);
 
+  const { category, subcategory } = useParams();
   // "price-asc", "price-desc" or null
   // null -> original order
   const [productOrder, setProductOrder] = useState(null);
@@ -20,11 +22,18 @@ const Products = (props) => {
 
   useEffect(() => {
     axios.get("https://e-commerce-api.belzaondrej.com/products").then((api) => {
-      setFetchedData(api.data);
-      setSortedData(api.data);
+      //filter data based on category and subcategory, if the subcategory is undefined then just based on category
+      let filtered = api.data.filter((d) =>
+        subcategory
+          ? d.category.name.toLowerCase() === category &&
+            d.subcategory.name.toLowerCase() === subcategory
+          : d.category.name.toLowerCase() === category
+      );
+      setFetchedData(category === "all-products" ? api.data : filtered);
+      setSortedData(category === "all-products" ? api.data : filtered);
     });
-  }, []);
-
+  }, [category, subcategory]);
+console.log(fetchedData);
   useEffect(() => {
     if (Array.isArray(fetchedData)) {
       const sorted = [...fetchedData];
@@ -44,6 +53,7 @@ const Products = (props) => {
   return (
     <>
       <ProductsFilter
+        title={subcategory ? subcategory : category}
         order={productOrder}
         onSortOrderChange={(order) => {
           // "price-asc" or "price-desc"
@@ -56,7 +66,9 @@ const Products = (props) => {
           {sortedData &&
             sortedData
               .slice(0, visible)
-              .map((p, i) => <ProductCard product={p} key={i} />)}
+              .map((p, i) => (
+                <ProductCard product={p} key={i} bag={bag} setBag={setBag} />
+              ))}
         </Row>
       </Container>
 

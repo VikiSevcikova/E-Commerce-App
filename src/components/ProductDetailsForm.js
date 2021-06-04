@@ -66,6 +66,7 @@ const ProductDetailsForm = ({ product, bag, setBag }) => {
         <h2 className="mb-3">${product.price} CAD</h2>
 
         <h5>Select Size:</h5>
+        {/* size buttons */}
         <ButtonGroup className="mb-3">
           {sizes &&
             sizes.map((s) => {

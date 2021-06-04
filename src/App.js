@@ -6,7 +6,7 @@ import "./scss/App.scss";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import ProductsPage from "./components/productspage/ProductsPage";
+import ProductsPage from "./pages/ProductsPage";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import Home from "./pages/Home";
@@ -20,17 +20,17 @@ import ShoppingBag from "./pages/ShoppingBagPage";
 function App() {
   const [bag, setBag] = useState([]);
 
-  useEffect(()=>{
-    if(localStorage.getItem('bag') === null){
-      localStorage.setItem('bag', JSON.stringify(bag));
-    }else{
-      setBag(JSON.parse(localStorage.getItem('bag')));
+  useEffect(() => {
+    if (localStorage.getItem("bag") === null) {
+      localStorage.setItem("bag", JSON.stringify(bag));
+    } else {
+      setBag(JSON.parse(localStorage.getItem("bag")));
     }
-  },[]);
+  }, []);
 
-  useEffect(()=>{
-    localStorage.setItem('bag', JSON.stringify(bag));
-  },[bag]);
+  useEffect(() => {
+    localStorage.setItem("bag", JSON.stringify(bag));
+  }, [bag]);
 
   return (
     <>
@@ -59,7 +59,16 @@ function App() {
                 <ShoppingBag {...props} bag={bag} setBag={setBag} />
               )}
             />
-            <Route path="/allproducts/" exact component={ProductsPage} />
+            <Route
+              path="/:category/:subcategory"
+              exact
+              render={(props) => <ProductsPage {...props} bag={bag} setBag={setBag} />}
+            />
+             <Route
+              path="/:category"
+              exact
+              render={(props) => <ProductsPage {...props} bag={bag} setBag={setBag} />}
+            />
           </Switch>
           <Footer />
         </div>

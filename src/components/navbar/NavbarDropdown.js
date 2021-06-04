@@ -12,7 +12,7 @@ const NavbarDropdown = ({ category }) => {
         <a
           className="nav-link"
           href="#"
-          id="women"
+          id={category.name}
           role="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
@@ -21,7 +21,7 @@ const NavbarDropdown = ({ category }) => {
         </a>
         <ul
           className={`dropdown-menu multi-column columns-${numberOfColumns} border-0`}
-          aria-labelledby="women"
+          aria-labelledby={category.name}
         >
           <div className="row gx-0 justify-content-center">
             {subcategories &&
@@ -35,9 +35,8 @@ const NavbarDropdown = ({ category }) => {
                         <li key={i}>
                             {/* create url param from the name of the category/subcategory */}
                           <Link
-                            to={`${category.name}/${subcategory.name
-                              .toLowerCase()
-                              .replace(" ", "-")}`}
+                            to={`/${category.name.toLowerCase()}/${subcategory.name
+                              .toLowerCase()}`}
                           >
                             {subcategory.name}
                           </Link>
