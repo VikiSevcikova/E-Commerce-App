@@ -1,38 +1,41 @@
 import React, { useState } from "react";
 
-const SortByFilter = (props) => {
-  const [radio, setRadio] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
+// props.setup()
+// -> props.onSortOrderChange("price-asc" / "price-desc")
+
+const SortByFilter = ({ order, onSortOrderChange }) => {
+  // const [radio, setRadio] = useState(false);
+  // const [isClicked, setIsClicked] = useState(false);
 
   return (
     <>
       <div className="fillterContainer">
         <div className="sortByContainer">
           <input
-            checked={radio === "priceLowtoHigh"}
+            checked={order === "price-asc"}
             style={{ display: "inline" }}
             type="radio"
             id="priceLowtoHigh"
-            value="priceLowtoHigh"
             onChange={(e) => {
-              setRadio(e.target.value);
+              if (e.currentTarget.checked) {
+                // ascendant / descendant
+
+                onSortOrderChange("price-asc");
+              }
             }}
           ></input>
           <label htmlFor="priceLowtoHigh">Price: Low to High</label>
         </div>
         <div className="sortByContainer">
           <input
-            checked={radio === "priceHightoLow"}
+            checked={order === "price-desc"}
             style={{ display: "inline" }}
             type="radio"
             id="priceHightoLow"
-            value="priceHightoLow"
             onChange={(e) => {
-              setRadio(e.target.value);
-            }}
-            onClick={() => {
-              props.setup();
-              setIsClicked(true);
+              if (e.currentTarget.checked) {
+                onSortOrderChange("price-desc");
+              }
             }}
           ></input>
           <label htmlFor="priceHightoLow">Price: High to Low</label>
