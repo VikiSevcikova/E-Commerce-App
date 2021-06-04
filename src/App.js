@@ -17,6 +17,7 @@ import "./scss/App.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import ShoppingBag from "./pages/ShoppingBagPage";
+import SearchPage from "./components/navbar/SearchPage";
 
 function App() {
   const [bag, setBag] = useState([]);
@@ -49,6 +50,7 @@ function App() {
               )}
             />
             <Route path="/allproducts/" exact component={ProductsPage} />
+            <Route path="/search/" exact component={SearchPage} />
           </Switch>
           <Footer />
         </div>

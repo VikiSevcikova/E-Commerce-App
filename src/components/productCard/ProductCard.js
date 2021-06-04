@@ -4,6 +4,8 @@ import { Col, Button, Card, ButtonToolbar } from "react-bootstrap";
 import "./ProductCard.css";
 
 const ProductCard = ({ product, bag, setBag }) => {
+  //console.log(product);
+
   const sizes = [
     { name: "XS", value: "xs" },
     { name: "S", value: "s" },
@@ -46,6 +48,7 @@ const ProductCard = ({ product, bag, setBag }) => {
                   size="sm"
                   className="me-1"
                   value={s.value}
+                  key={s.value}
                 >
                   {s.name}
                 </Button>
