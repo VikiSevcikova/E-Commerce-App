@@ -16,6 +16,7 @@ import "./scss/App.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import ShoppingBag from "./pages/ShoppingBagPage";
+import Checkout from "./pages/Checkout";
 
 function App() {
   const [bag, setBag] = useState([]);
@@ -62,12 +63,22 @@ function App() {
             <Route
               path="/:category/:subcategory"
               exact
-              render={(props) => <ProductsPage {...props} bag={bag} setBag={setBag} />}
+              render={(props) => (
+                <ProductsPage {...props} bag={bag} setBag={setBag} />
+              )}
             />
-             <Route
+            <Route
               path="/:category"
               exact
-              render={(props) => <ProductsPage {...props} bag={bag} setBag={setBag} />}
+              render={(props) => (
+                <ProductsPage {...props} bag={bag} setBag={setBag} />
+              )}
+            />
+            <Route path="/allproducts/" exact component={ProductsPage} />
+            <Route
+              path="/checkout"
+              exact
+              render={(props) => <Checkout {...props} setBag={setBag} />}
             />
           </Switch>
           <Footer />
