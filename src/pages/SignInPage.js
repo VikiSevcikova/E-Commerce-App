@@ -10,7 +10,7 @@ function SignInPage() {
   const [isSignUpHovered, setSignUpHovered] = useState(false);
 
   return (
-    <Container>
+    <Container className="SiginContainer">
       <Row>
         <Col>
           <LogInAccountContainer />
