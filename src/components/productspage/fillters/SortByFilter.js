@@ -1,12 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
-// props.setup()
 // -> props.onSortOrderChange("price-asc" / "price-desc")
 
 const SortByFilter = ({ order, onSortOrderChange }) => {
-  // const [radio, setRadio] = useState(false);
-  // const [isClicked, setIsClicked] = useState(false);
-
   return (
     <>
       <div className="fillterContainer">
@@ -46,30 +42,3 @@ const SortByFilter = ({ order, onSortOrderChange }) => {
 };
 
 export default SortByFilter;
-
-// <div className="sortByContainer">
-//           <input
-//             checked={radio === "relevance"}
-//             style={{ display: "inline" }}
-//             type="radio"
-//             id="relevance"
-//             value="relevance"
-//             onChange={(e) => {
-//               setRadio(e.target.value);
-//             }}
-//           ></input>
-//           <label htmlFor="relevance">Relevance</label>
-//         </div>
-//         <div className="sortByContainer">
-//           <input
-//             checked={radio === "newest"}
-//             style={{ display: "inline" }}
-//             type="radio"
-//             id="newest"
-//             value="newest"
-//             onChange={(e) => {
-//               setRadio(e.target.value);
-//             }}
-//           ></input>
-//           <label htmlFor="newest">Newest</label>
-//         </div>

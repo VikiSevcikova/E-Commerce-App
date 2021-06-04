@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { Tabs, Container, Row, Col } from "react-bootstrap";
 import SizeFilter from "./SizeFilter";

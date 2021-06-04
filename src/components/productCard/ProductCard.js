@@ -12,8 +12,6 @@ const ProductCard = ({ product, bag, setBag }) => {
     { name: "XL", value: "xl" },
   ];
 
-  console.log(product);
-
   const addToBag = (e) => {
     e.preventDefault();
     const productToAdd = {
