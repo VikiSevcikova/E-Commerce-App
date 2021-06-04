@@ -11,6 +11,10 @@ const SearchPage = ({ search, setSearch }) => {
   const [checkSubmit, isCheckSubmit] = useState(null);
   const [visible, setVisible] = useState(20);
 
+  useEffect(() => {
+    console.log("fetched data changed", fetchedData);
+  }, [fetchedData]);
+
   const SeeMore = () => {
     setVisible(visible + 20);
   };
@@ -18,37 +22,13 @@ const SearchPage = ({ search, setSearch }) => {
   const fetchProductQuery = async (name) => {
     try {
       const api = `https://e-commerce-api.belzaondrej.com/products/search?q=${name}`;
-      //console.log(api);
+
       const fetchData = await axios.get(api);
 
-      console.log(fetchData);
       if (fetchData.status === 404)
         throw new Error(`Invalid name.(${fetchData.status})`);
 
       setFetchedData(fetchData.data);
-      console.log(fetchedData);
-      console.log(fetchData);
-      // fetchData.json().then((data) => {
-      //   setFetchedOneData(data);
-      //   console.log(data);
-
-      //   // setFetchedOneData((fetchedOneData) => {
-      //   //   fetchedOneData = [1, 2, 3, 4, 5];
-      //   // });
-      //   // localStorage.setItem("pokemonValue", JSON.stringify(data));
-      //   // let pokemonValue = JSON.parse(localStorage.getItem("pokemonValue"));
-      //   // const firstFunc = async function () {
-      //   //   await fetchSpeciesDetail(pokemonValue);
-      //   // };
-      //   // const secondFunc = async function () {
-      //   //   await window.open("pokemon-info.html");
-      //   // };
-      //   // const allFunc = async function () {
-      //   //   await firstFunc();
-      //   //   await secondFunc();
-      //   // };
-      //   // allFunc();
-      // });
     } catch (err) {
       alert(`Something went wrong. ${err.message}`);
     }
@@ -80,24 +60,25 @@ const SearchPage = ({ search, setSearch }) => {
       <div className="searchContainer">
         <div className="search">
           <form
-            onSubmit={async (e) => {
+            onSubmit={(e) => {
               e.preventDefault();
-              await fetchProductQuery(query);
-              //setSearch(false);
-              isCheckSubmit(true);
-              {
-                setTimeout(() => {
-                  console.log("array", fetchedData);
-                }, 50);
-              }
+              fetchProductQuery(query);
             }}
           >
             <input
-              onChange={saveInputText}
+              onChange={() => {
+                saveInputText();
+                _.debaunce(() => {
+                  //this console log will be called after you stop typing and 1s
+                  console.log("this function has debaunce time of 1s");
+                  fetchProductQuery(query);
+                }, 1000);
+              }}
               type="text"
               placeholder="Search for products"
             ></input>
           </form>
+          {/* {fetchedData && <>{fetchedData.map((p) => p.name)}</>} */}
           <div
             className="closeBtn"
             onClick={() => {
@@ -107,29 +88,34 @@ const SearchPage = ({ search, setSearch }) => {
             <FaTimes />
           </div>
         </div>
+        {fetchedData && (
+          <>
+            {fetchedData.map((p) => (
+              <div key={p.id}>{p.name}</div>
+            ))}
+          </>
+          // <div>
+          //   <Container>
+          //     <Row>
+          //       {fetchedData.slice(0, visible).map((p, i) => (
+          //         <ProductCard product={p} key={i} />
+          //       ))}
+          //     </Row>
+          //   </Container>
+          //   {visible < fetchedData.length && (
+          //     <div className="seeMoreButtonContainer">
+          //       <Button
+          //         className="seeMoreButton"
+          //         variant="dark"
+          //         onClick={SeeMore}
+          //       >
+          //         See more
+          //       </Button>
+          //     </div>
+          //   )}
+          // </div>
+        )}
       </div>
-      {fetchedData && isCheckSubmit && (
-        <div>
-          <Container>
-            <Row>
-              {fetchedData.slice(0, visible).map((p, i) => (
-                <ProductCard product={p} key={i} />
-              ))}
-            </Row>
-          </Container>
-          {visible < fetchedData.length && (
-            <div className="seeMoreButtonContainer">
-              <Button
-                className="seeMoreButton"
-                variant="dark"
-                onClick={SeeMore}
-              >
-                See more
-              </Button>
-            </div>
-          )}
-        </div>
-      )}
     </>
   );
 };
