@@ -1,45 +1,16 @@
 import React, { useState } from "react";
 
-const SortByFilter = () => {
+const SortByFilter = (props) => {
   const [radio, setRadio] = useState(false);
-
-  // const sortByLowtoHigh = () => {
-  //   const indexValue = pokemons.sort((a, b) =>
-  //     b.id > a.id ? 1 : a.id > b.id ? -1 : 0
-  //   );
-  //   renderFilteredPokemons(indexValue);
-  // };
+  const [isClicked, setIsClicked] = useState(false);
 
   return (
     <>
       <div className="fillterContainer">
         <div className="sortByContainer">
           <input
-            checked={radio === "relevance"}
-            type="radio"
-            id="relevance"
-            value="relevance"
-            onChange={(e) => {
-              setRadio(e.target.value);
-            }}
-          ></input>
-          <label htmlFor="relevance">Relevance</label>
-        </div>
-        <div className="sortByContainer">
-          <input
-            checked={radio === "newest"}
-            type="radio"
-            id="newest"
-            value="newest"
-            onChange={(e) => {
-              setRadio(e.target.value);
-            }}
-          ></input>
-          <label htmlFor="newest">Newest</label>
-        </div>
-        <div className="sortByContainer">
-          <input
             checked={radio === "priceLowtoHigh"}
+            style={{ display: "inline" }}
             type="radio"
             id="priceLowtoHigh"
             value="priceLowtoHigh"
@@ -52,11 +23,16 @@ const SortByFilter = () => {
         <div className="sortByContainer">
           <input
             checked={radio === "priceHightoLow"}
+            style={{ display: "inline" }}
             type="radio"
             id="priceHightoLow"
             value="priceHightoLow"
             onChange={(e) => {
               setRadio(e.target.value);
+            }}
+            onClick={() => {
+              props.setup();
+              setIsClicked(true);
             }}
           ></input>
           <label htmlFor="priceHightoLow">Price: High to Low</label>
@@ -67,3 +43,30 @@ const SortByFilter = () => {
 };
 
 export default SortByFilter;
+
+// <div className="sortByContainer">
+//           <input
+//             checked={radio === "relevance"}
+//             style={{ display: "inline" }}
+//             type="radio"
+//             id="relevance"
+//             value="relevance"
+//             onChange={(e) => {
+//               setRadio(e.target.value);
+//             }}
+//           ></input>
+//           <label htmlFor="relevance">Relevance</label>
+//         </div>
+//         <div className="sortByContainer">
+//           <input
+//             checked={radio === "newest"}
+//             style={{ display: "inline" }}
+//             type="radio"
+//             id="newest"
+//             value="newest"
+//             onChange={(e) => {
+//               setRadio(e.target.value);
+//             }}
+//           ></input>
+//           <label htmlFor="newest">Newest</label>
+//         </div>

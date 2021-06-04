@@ -5,7 +5,7 @@ import SizeFilter from "./SizeFilter";
 import ColorFilter from "./ColorFilter";
 import SortByFilter from "./SortByFilter";
 
-const ProductsFilter = () => {
+const ProductsFilter = (props) => {
   return (
     <>
       <div className="productBanner">
@@ -54,7 +54,7 @@ const ProductsFilter = () => {
                 }
                 className="filter"
               >
-                <SortByFilter />
+                <SortByFilter setup={props.setup} />
               </Tabs>
             </Tabs>
           </Col>
