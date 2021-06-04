@@ -125,6 +125,10 @@ input[type="checkbox"]:checked + .checkbox::after {
 }
 
 .filterContianer {
-  margin-top: 20%;
+  margin-top: 15%;
   margin-bottom: 2rem;
+}
+
+.sortByContainer {
+  padding: 0.5rem;
 }

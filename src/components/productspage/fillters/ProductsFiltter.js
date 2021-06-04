@@ -10,7 +10,7 @@ const ProductsFilter = ({ order, onSortOrderChange }) => {
     <>
       <div className="productBanner">
         <img src="../image/productImage.jpg" alt="productBanner" />
-        <h2>PRODUCT</h2>
+        <h2>ALL PRODUCTS</h2>
       </div>
       <Container className="filterContianer">
         <Row>
