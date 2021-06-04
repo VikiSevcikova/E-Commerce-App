@@ -30,7 +30,7 @@ const RowOfProducts = ({productId, category, isHomePage, bag, setBag}) => {
             </div>
             <Row>
                 {filteredProducts && filteredProducts.map((f,i) => {
-                    const product = {id: f.id, name: f.name, price: f.price, previewImage: f.previewImage };
+                    const product = {id: f.id, name: f.name, price: f.price, stock: f.stock, previewImage: f.previewImage };
                     return <ProductCard key={f.id} product={product} bag={bag} setBag={setBag}/>
                 }
                 )}

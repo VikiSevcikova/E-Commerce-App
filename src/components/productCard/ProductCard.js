@@ -1,17 +1,26 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Col, Button, Card, ButtonToolbar } from "react-bootstrap";
 
 import '../../scss/ProductCard.scss';
 
 const ProductCard = ({ product, bag, setBag }) => {
-    const sizes = [
-        { name: 'XS', value: 'XS' },
-        { name: 'S', value: 'S' },
-        { name: 'M', value: 'M' },
-        { name: 'L', value: 'L' },
-        { name: 'XL', value: 'XL' },
-    ];
+    const [sizes, setSizes] = useState(null);
+
+    useEffect(()=>{
+        getSizes();
+    },[]);
+
+    const getSizes = async () => {
+        const url = `https://e-commerce-api.belzaondrej.com/products/sizes`;
+        try {
+          var response = await axios.get(url);
+          setSizes(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+    }
 
     const addToBag = (e) => {
         e.preventDefault();
@@ -31,7 +40,6 @@ const ProductCard = ({ product, bag, setBag }) => {
             setBag([...bag, productToAdd]);
         }
     }
-    
     return(
         <Col lg={6} xl={3}>
             <Card className="border-0" style={{width: "100%"}} href="#">
@@ -42,9 +50,11 @@ const ProductCard = ({ product, bag, setBag }) => {
                     <div className="quick-add-overlay rounded py-2 px-2">
                         <h6 className="text-uppercase fw-bold">Quick Add</h6>
                         <ButtonToolbar className="text-center well">
-                            {sizes.map((s)=>
-                                <Button key={s.value} onClick={addToBag} type="button" variant="outline-dark" size="sm" className="me-1" value={s.value}>{s.name}</Button>
-                            )}
+                            {sizes && sizes.map((s)=> {
+                                let availability = {};
+                                availability.disabled = product.stock.some(st => st.size === s && st.quantity < 20) ? true : false;
+                                return <Button key={s} onClick={addToBag} {...availability} type="button" variant="outline-dark" size="sm" className="me-1" value={s}>{s}</Button>
+                            })}
                         </ButtonToolbar>
                     </div>
                 </div>

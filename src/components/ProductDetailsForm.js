@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import axios from 'axios';
+import React, { useEffect, useState } from "react";
 import { Button, ButtonGroup, ToggleButton, Form } from "react-bootstrap";
 
 import "../scss/ProductDetailsPage.scss";
@@ -6,15 +7,22 @@ import QuantityButtons from "./QuantityButtons";
 
 const ProductDetailsForm = ({product, bag, setBag}) => {
     const [quantity, setQuantity] = useState(0);
+    const [sizes, setSizes] = useState(null);
     const [size, setSize] = useState(null);
 
-    const sizes = [
-        { name: 'XS', value: 'XS' },
-        { name: 'S', value: 'S' },
-        { name: 'M', value: 'M' },
-        { name: 'L', value: 'L' },
-        { name: 'XL', value: 'XL' },
-    ];
+    useEffect(()=>{
+        getSizes();
+    },[]);
+
+    const getSizes = async () => {
+        const url = `https://e-commerce-api.belzaondrej.com/products/sizes`;
+        try {
+          var response = await axios.get(url);
+          setSizes(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+    }
 
     const handleSizeChange = (e) => {
         setSize(e.target.value);
@@ -47,21 +55,26 @@ return (
 
             <h5>Select Size:</h5>
             <ButtonGroup className="mb-3">
-                {sizes.map((s) => (
-                <ToggleButton
-                    key={s.value}
-                    id={`size-${s.value}`}
-                    type="radio"
-                    variant="outline-dark"
-                    className="rounded me-1"
-                    name="size"
-                    value={s.value}
-                    checked={size === s.value}
-                    onChange={handleSizeChange}
-                >
-                    {s.name}
-                </ToggleButton>
-                ))}
+                {sizes && sizes.map((s) => {
+                    let availability = {};
+                    availability.disabled = product.stock.some(st => st.size === s && st.quantity < 20) ? true : false;
+                    return (
+                        <ToggleButton
+                            key={s}
+                            id={`size-${s}`}
+                            type="radio"
+                            variant="outline-dark"
+                            className="rounded me-1"
+                            name="size"
+                            value={s}
+                            checked={size === s}
+                            onChange={handleSizeChange}
+                            {...availability}
+                        >
+                            {s}
+                        </ToggleButton>
+                    )
+                })}
             </ButtonGroup>
 
             <h5>Quantity:</h5>

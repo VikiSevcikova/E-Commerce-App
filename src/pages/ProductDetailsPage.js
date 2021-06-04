@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Container, Row, Col, Image, Accordion, Card, Carousel, CarouselItem } from "react-bootstrap";
+import { Container, Row, Col, Accordion, Card } from "react-bootstrap";
 
 import RowOfProducts from "../components/RowOfProducts";
 import ProductDetailsForm from "../components/ProductDetailsForm";
@@ -19,7 +19,6 @@ const ProductDetailsPage = ({bag, setBag}) => {
 
     const getProduct = async () => {
         const url = `https://e-commerce-api.belzaondrej.com/products/${id}`;
-        console.log(url+id);
         try {
           var response = await axios.get(url);
           setProduct(response.data);
