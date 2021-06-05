@@ -61,20 +61,26 @@ function App() {
               )}
             />
             <Route
-              path="/:category/:subcategory"
+              path="/category/:category/:subcategory"
               exact
               render={(props) => (
                 <ProductsPage {...props} bag={bag} setBag={setBag} />
               )}
             />
             <Route
-              path="/:category"
+              path="/category/:category"
               exact
               render={(props) => (
                 <ProductsPage {...props} bag={bag} setBag={setBag} />
               )}
             />
-            <Route path="/allproducts/" exact component={ProductsPage} />
+            <Route
+              path="/category/all-products"
+              exact
+              render={(props) => (
+                <ProductsPage {...props} bag={bag} setBag={setBag} />
+              )}
+            />
             <Route
               path="/checkout"
               exact

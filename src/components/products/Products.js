@@ -15,6 +15,7 @@ const Products = ({ bag, setBag }) => {
   // "price-asc", "price-desc" or null
   // null -> original order
   const [productOrder, setProductOrder] = useState(null);
+  const [selectedSizes, setSelectedSizes] = useState(null);
 
   const SeeMore = () => {
     setVisible(visible + 20);
@@ -33,7 +34,7 @@ const Products = ({ bag, setBag }) => {
       setSortedData(category === "all-products" ? api.data : filtered);
     });
   }, [category, subcategory]);
-console.log(fetchedData);
+
   useEffect(() => {
     if (Array.isArray(fetchedData)) {
       const sorted = [...fetchedData];
@@ -46,15 +47,23 @@ console.log(fetchedData);
           sorted.sort((a, b) => b.price - a.price);
           break;
       }
-      setSortedData(sorted);
+      let filtered = filterBySize(sorted);
+      setSortedData(filtered);
     }
-  }, [fetchedData, productOrder]);
+  }, [fetchedData, productOrder, selectedSizes]);
+
+  const filterBySize = (sorted) => {
+    if(!selectedSizes || selectedSizes.length === 0) return sorted;
+    return sorted.filter(s => s.stock.some(st => selectedSizes.includes(st.size) && st.quantity >= 20));
+  }
 
   return (
     <>
       <ProductsFilter
         title={subcategory ? subcategory : category}
         order={productOrder}
+        selectedSizes={selectedSizes}
+        setSelectedSizes={setSelectedSizes}
         onSortOrderChange={(order) => {
           // "price-asc" or "price-desc"
           setProductOrder(order);

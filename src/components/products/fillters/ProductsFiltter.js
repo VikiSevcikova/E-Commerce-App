@@ -5,13 +5,13 @@ import SizeFilter from "./SizeFilter";
 import ColorFilter from "./ColorFilter";
 import SortByFilter from "./SortByFilter";
 
-const ProductsFilter = ({ title, order, onSortOrderChange }) => {
+const ProductsFilter = ({ title, order, onSortOrderChange, selectedSizes, setSelectedSizes }) => {
   return (
     <>
-      <div className="productBanner">
-        <img src="../image/productImage.jpg" alt="productBanner" />
+      <Container className="productBanner">
+        <img src="/image/productImage.jpg" alt="productBanner" />
         <h2 className="text-uppercase">{title}</h2>
-      </div>
+      </Container>
       <Container className="filterContianer">
         <Row>
           <Col>
@@ -32,7 +32,7 @@ const ProductsFilter = ({ title, order, onSortOrderChange }) => {
                 }
                 className="filter"
               >
-                <SizeFilter />
+                <SizeFilter selectedSizes={selectedSizes} setSelectedSizes={setSelectedSizes} />
               </Tabs>
               <Tabs
                 eventKey="color"
