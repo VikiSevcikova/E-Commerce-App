@@ -25,7 +25,7 @@ const NavbarDropdown = ({ category }) => {
         >
           <div className="row gx-0 justify-content-center">
             {subcategories &&
-                // creating 3 columns with maximum (subcategory.length/3) rows
+              // creating 3 columns with maximum (subcategory.length/3) rows
               [...Array(numberOfColumns)].map((x, i) => (
                 <div key={category.id + i} className="col-sm-2">
                   <ul className="multi-column-dropdown">
@@ -33,10 +33,9 @@ const NavbarDropdown = ({ category }) => {
                       .slice(i * numberOfRows, i * numberOfRows + numberOfRows)
                       .map((subcategory, i) => (
                         <li key={i}>
-                            {/* create url param from the name of the category/subcategory */}
+                          {/* create url param from the name of the category/subcategory */}
                           <Link
-                            to={`/${category.name.toLowerCase()}/${subcategory.name
-                              .toLowerCase()}`}
+                            to={`/category/${category.name.toLowerCase()}/${subcategory.name.toLowerCase()}`}
                           >
                             {subcategory.name}
                           </Link>

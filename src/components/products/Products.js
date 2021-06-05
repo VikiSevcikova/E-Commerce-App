@@ -47,18 +47,23 @@ const Products = ({ bag, setBag }) => {
           sorted.sort((a, b) => b.price - a.price);
           break;
       }
-      setSortedData(sorted);
+      let filtered = filterBySize(sorted);
+      setSortedData(filtered);
     }
-  }, [fetchedData, productOrder]);
+  }, [fetchedData, productOrder, selectedSizes]);
+
+  const filterBySize = (sorted) => {
+    if(!selectedSizes || selectedSizes.length === 0) return sorted;
+    return sorted.filter(s => s.stock.some(st => selectedSizes.includes(st.size) && st.quantity >= 20));
+  }
 
   return (
     <>
       <ProductsFilter
         title={subcategory ? subcategory : category}
         order={productOrder}
-        onSelectedSizesChange={(sizes) => {
-          setSelectedSizes(sizes);
-        }}
+        selectedSizes={selectedSizes}
+        setSelectedSizes={setSelectedSizes}
         onSortOrderChange={(order) => {
           // "price-asc" or "price-desc"
           setProductOrder(order);

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { ToggleButton, ToggleButtonGroup } from "react-bootstrap";
 
-const SizeFilter = ({onSelectedSizesChange}) => {
+const SizeFilter = ({selectedSizes, setSelectedSizes}) => {
   const [sizes, setSizes] = useState(null);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const SizeFilter = ({onSelectedSizesChange}) => {
   };
 
   const handleSizeFilterChange = (val) => {
-    onSelectedSizesChange(val);
+    setSelectedSizes(val);
   }
 
   return (

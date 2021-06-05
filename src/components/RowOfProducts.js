@@ -45,7 +45,7 @@ const RowOfProducts = ({ productId, category, isHomePage, bag, setBag }) => {
           {isHomePage ? category : "You might like"}
         </h4>
         {isHomePage && (
-          <a className="link-dark fw-bold" href="#">
+          <a className="link-dark fw-bold" href={`/category/${category}`}>
             View all
           </a>
         )}
