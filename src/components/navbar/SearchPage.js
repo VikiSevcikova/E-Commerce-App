@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import "../../scss/SearchPage.scss";
 import { FaTimes } from "react-icons/fa";
 import ProductCard from "../productCard/ProductCard";
 import { Button, Row, Container } from "react-bootstrap";
 import axios from "axios";
+import _ from "lodash";
 
 const SearchPage = ({ search, setSearch }) => {
   const [query, setQuery] = useState();
   const [fetchedData, setFetchedData] = useState();
   const [checkSubmit, isCheckSubmit] = useState(null);
   const [visible, setVisible] = useState(20);
+  const [word, setWord] = useState();
 
   useEffect(() => {
     console.log("fetched data changed", fetchedData);
@@ -34,6 +36,21 @@ const SearchPage = ({ search, setSearch }) => {
     }
   };
 
+  // const handleChange = (e) => {
+  //   setCategory(e.target.value);
+  //   setWord("");
+  //   //setMeanings([]);
+  // };
+
+  const deb = useCallback(
+    _.debounce((text) => fetchProductQuery(text), 1000),
+    []
+  );
+
+  const handleText = (text) => {
+    deb(text);
+  };
+
   // if (search === true) {
   //   document.body.style.backgroundColor = "green";
   // } else if (search === false) {
@@ -55,24 +72,19 @@ const SearchPage = ({ search, setSearch }) => {
     setQuery(() => e.target.value);
   };
 
+  const sample = () => {
+    console.log("hi");
+  };
+
   return (
     <>
       <div className="searchContainer">
         <div className="search">
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              fetchProductQuery(query);
-            }}
-          >
+          <form>
             <input
-              onChange={() => {
-                saveInputText();
-                _.debaunce(() => {
-                  //this console log will be called after you stop typing and 1s
-                  console.log("this function has debaunce time of 1s");
-                  fetchProductQuery(query);
-                }, 1000);
+              onChange={(e) => {
+                //handleChange(e);
+                handleText(e.target.value);
               }}
               type="text"
               placeholder="Search for products"
@@ -89,34 +101,35 @@ const SearchPage = ({ search, setSearch }) => {
           </div>
         </div>
         {fetchedData && (
-          <>
-            {fetchedData.map((p) => (
-              <div key={p.id}>{p.name}</div>
-            ))}
-          </>
-          // <div>
-          //   <Container>
-          //     <Row>
-          //       {fetchedData.slice(0, visible).map((p, i) => (
-          //         <ProductCard product={p} key={i} />
-          //       ))}
-          //     </Row>
-          //   </Container>
-          //   {visible < fetchedData.length && (
-          //     <div className="seeMoreButtonContainer">
-          //       <Button
-          //         className="seeMoreButton"
-          //         variant="dark"
-          //         onClick={SeeMore}
-          //       >
-          //         See more
-          //       </Button>
-          //     </div>
-          //   )}
-          // </div>
+          <div>
+            <Container>
+              <Row>
+                {fetchedData.slice(0, visible).map((p, i) => (
+                  <ProductCard product={p} key={i} />
+                ))}
+              </Row>
+            </Container>
+            {visible < fetchedData.length && (
+              <div className="seeMoreButtonContainer">
+                <Button
+                  className="seeMoreButton"
+                  variant="dark"
+                  onClick={SeeMore}
+                >
+                  See more
+                </Button>
+              </div>
+            )}
+          </div>
         )}
       </div>
     </>
   );
 };
 export default SearchPage;
+
+// <>
+//             {fetchedData.map((p) => (
+//               <div key={p.id}>{p.name}</div>
+//             ))}
+//           </>
