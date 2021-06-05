@@ -1,30 +1,55 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Col, Button, Card, ButtonToolbar } from "react-bootstrap";
-import "./ProductCard.css";
+
+import "../../scss/ProductCard.scss";
 
 const ProductCard = ({ product, bag, setBag }) => {
-  //console.log(product);
+  const [sizes, setSizes] = useState(null);
 
-  const sizes = [
-    { name: "XS", value: "xs" },
-    { name: "S", value: "s" },
-    { name: "M", value: "m" },
-    { name: "L", value: "l" },
-    { name: "XL", value: "xl" },
-  ];
+  useEffect(() => {
+    getSizes();
+  }, []);
+
+  const getSizes = async () => {
+    const url = `https://e-commerce-api.belzaondrej.com/products/sizes`;
+    try {
+      let response = await axios.get(url);
+      setSizes(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const addToBag = (e) => {
     e.preventDefault();
-    const productToAdd = {
+    if (!bag) return;
+    let size = e.target.value;
+    let productToAdd = {
+      id: `${product.id}-${size}`,
       name: product.name,
+      previewImage: product.previewImage,
       price: product.price,
       size: e.target.value,
       quantity: 1,
     };
-    setBag([...bag, productToAdd]);
+    if (bag.some((b) => b.id === `${product.id}-${size}`)) {
+      setBag(
+        bag.map((i) => {
+          if (i.id === `${product.id}-${size}`) {
+            return {
+              ...i,
+              quantity: i.quantity + 1,
+            };
+          }
+          return i;
+        })
+      );
+    } else {
+      setBag([...bag, productToAdd]);
+    }
   };
-
   return (
     <Col lg={6} xl={3}>
       <Card className="border-0" style={{ width: "100%" }} href="#">
@@ -39,23 +64,34 @@ const ProductCard = ({ product, bag, setBag }) => {
           </Link>
           <div className="quick-add-overlay rounded py-2 px-2">
             <h6 className="text-uppercase fw-bold">Quick Add</h6>
-            <ButtonToolbar className="text-center well">
-              {sizes.map((s) => (
-                <Button
-                  onClick={addToBag}
-                  type="button"
-                  variant="outline-dark"
-                  size="sm"
-                  className="me-1"
-                  value={s.value}
-                  key={s.value}
-                >
-                  {s.name}
-                </Button>
-              ))}
+            <ButtonToolbar className="justify-content-center">
+              {sizes &&
+                sizes.map((s) => {
+                  let availability = {};
+                  availability.disabled = product.stock.some(
+                    (st) => st.size === s && st.quantity < 20
+                  )
+                    ? true
+                    : false;
+                  return (
+                    <Button
+                      key={s}
+                      onClick={addToBag}
+                      {...availability}
+                      type="button"
+                      variant="outline-dark"
+                      size="sm"
+                      className="me-1"
+                      value={s}
+                    >
+                      {s}
+                    </Button>
+                  );
+                })}
             </ButtonToolbar>
           </div>
         </div>
+
         <Card.Body className="px-0 mx-0">
           <Link
             to={`/products/${product.id}`}

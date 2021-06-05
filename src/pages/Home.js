@@ -10,13 +10,14 @@ import RowOfProducts from "../components/RowOfProducts";
 
 const Home = ({ bag, setBag }) => {
   return (
-    <Container fluid>
+    <Container fluid className="px-0">
       <Row
         className="justify-content-center"
         style={{
           backgroundImage: `url(${banner})`,
           backgroundSize: "cover",
-          height: "90vh",
+          backgroundPositionY: "center",
+          height: "630px",
         }}
       >
         <Col
@@ -30,11 +31,11 @@ const Home = ({ bag, setBag }) => {
             Find your why and you will find a way to make it happen.
           </p>
           <Button
-            href="/allproducts"
             variant="dark"
             size="lg"
             type="button"
             className="px-4 text-uppercase"
+            href="/category/all-products"
           >
             Shop
           </Button>
@@ -47,76 +48,89 @@ const Home = ({ bag, setBag }) => {
         setBag={setBag}
       />
 
-      <Row className="p-2 align-items-center">
-        <Col md={6}>
-          <Image fluid src={onsideimage} />
-        </Col>
-        <Col md={6} className="text-center">
-          <h3 className="fw-bold text-uppercase">Join Us</h3>
-          <p className="fw-bold text-uppercase">
-            To get all the member exclusives.
-          </p>
-          <Button
-            href="/signin"
-            variant="dark"
-            size="lg"
-            type="button"
-            className="px-4 text-uppercase"
-          >
-            SIGN IN
-          </Button>
-        </Col>
-      </Row>
-
-      <RowOfProducts category="hoodies & jackets" isHomePage={true} />
-
-      <Row className="p-2">
-        <Col md={6} className="mt-2">
-          <Col
-            md={12}
-            className="d-flex flex-column justify-content-end align-items-end p-4 gap-2"
-            style={{
-              backgroundImage: `url(${women})`,
-              backgroundSize: "cover",
-              height: "90vh",
-            }}
-          >
-            <h1 className="display-5 fw-bold text-uppercase text-light">
-              Women
-            </h1>
+      <Container>
+        <Row className="p-2 align-items-center">
+          <Col md={6}>
+            <Image fluid src={onsideimage} />
+          </Col>
+          <Col md={6} className="text-center">
+            <h3 className="fw-bold text-uppercase">Join Us</h3>
+            <p className="fw-bold text-uppercase">
+              To get all the member exclusives.
+            </p>
             <Button
-              variant="light"
+              href="/signin"
+              variant="dark"
               size="lg"
               type="button"
-              className="fw-bold px-4 text-uppercase"
+              className="px-4 text-uppercase"
             >
-              Shop
+              SIGN IN
             </Button>
           </Col>
-        </Col>
-        <Col md={6} className="mt-2">
-          <Col
-            md={12}
-            className="text-start p-4 gap-2"
-            style={{
-              backgroundImage: `url(${men})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              height: "90vh",
-            }}
-          >
-            <h1 className="display-5 fw-bold text-uppercase text-light">Men</h1>
-            <Button
-              variant="light"
-              size="lg"
-              type="button"
-              className="fw-bold px-4 text-uppercase"
+        </Row>
+      </Container>
+
+      <RowOfProducts
+        category="hoodies & jackets"
+        isHomePage={true}
+        bag={bag}
+        setBag={setBag}
+      />
+
+      <Container>
+        <Row className="p-2">
+          <Col md={6} className="mt-2">
+            <Col
+              md={12}
+              className="d-flex flex-column justify-content-end align-items-end p-4 gap-2"
+              style={{
+                backgroundImage: `url(${women})`,
+                backgroundSize: "cover",
+                height: "90vh",
+              }}
             >
-              Shop
-            </Button>
+              <h1 className="display-5 fw-bold text-uppercase text-light">
+                Women
+              </h1>
+              <Button
+                variant="light"
+                size="lg"
+                type="button"
+                className="fw-bold px-4 text-uppercase"
+                href="/category/womens"
+              >
+                Shop
+              </Button>
+            </Col>
           </Col>
-        </Col>
-      </Row>
+          <Col md={6} className="mt-2">
+            <Col
+              md={12}
+              className="text-start p-4 gap-2"
+              style={{
+                backgroundImage: `url(${men})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                height: "90vh",
+              }}
+            >
+              <h1 className="display-5 fw-bold text-uppercase text-light">
+                Men
+              </h1>
+              <Button
+                variant="light"
+                size="lg"
+                type="button"
+                className="fw-bold px-4 text-uppercase"
+                href="/category/mens"
+              >
+                Shop
+              </Button>
+            </Col>
+          </Col>
+        </Row>
+      </Container>
     </Container>
   );
 };

@@ -127,9 +127,3 @@ const SearchPage = ({ search, setSearch }) => {
   );
 };
 export default SearchPage;
-
-// <>
-//             {fetchedData.map((p) => (
-//               <div key={p.id}>{p.name}</div>
-//             ))}
-//           </>

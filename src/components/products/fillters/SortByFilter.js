@@ -15,7 +15,6 @@ const SortByFilter = ({ order, onSortOrderChange }) => {
             onChange={(e) => {
               if (e.currentTarget.checked) {
                 // ascendant / descendant
-
                 onSortOrderChange("price-asc");
               }
             }}
