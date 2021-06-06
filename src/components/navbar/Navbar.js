@@ -12,9 +12,8 @@ import axios from "axios";
 import NavbarDropdown from "./NavbarDropdown";
 import SearchPage from "./SearchPage";
 
-const Navbar = ({ bag }) => {
+const Navbar = ({ bag, search, setSearch }) => {
   const [categories, setCategories] = useState(null);
-  const [search, setSearch] = useState(false);
 
   useEffect(() => {
     getCategories();

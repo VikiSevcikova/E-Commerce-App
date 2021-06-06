@@ -7,11 +7,8 @@ import axios from "axios";
 import _ from "lodash";
 
 const SearchPage = ({ search, setSearch }) => {
-  const [query, setQuery] = useState();
   const [fetchedData, setFetchedData] = useState();
-  const [checkSubmit, isCheckSubmit] = useState(null);
   const [visible, setVisible] = useState(20);
-  const [word, setWord] = useState();
 
   useEffect(() => {
     console.log("fetched data changed", fetchedData);
@@ -36,44 +33,14 @@ const SearchPage = ({ search, setSearch }) => {
     }
   };
 
-  // const handleChange = (e) => {
-  //   setCategory(e.target.value);
-  //   setWord("");
-  //   //setMeanings([]);
-  // };
-
   const deb = useCallback(
-    _.debounce((text) => fetchProductQuery(text), 1000),
+    _.debounce((query) => fetchProductQuery(query), 1000),
     []
   );
 
-  const handleText = (text) => {
-    deb(text);
-  };
-
-  // if (search === true) {
-  //   document.body.style.backgroundColor = "green";
-  // } else if (search === false) {
-  //   console.log(search);
-  //   document.body.style.backgroundColor = "white";
-  // }
-
-  // const searchProduct = (e) => {
-  //   console.log(e.target.value);
-  //   //form.addEventListener("submit", (e) => {
-  //   //localStorage.clear();
-  //   e.preventDefault();
-  //   // fetchOneProduct(input.value.toLowerCase());
-  //   // });
-  // };
-  // searchProduct();
-
-  const saveInputText = (e) => {
-    setQuery(() => e.target.value);
-  };
-
-  const sample = () => {
-    console.log("hi");
+  const handleQuery = (query) => {
+    console.log(query.split("product").join(" "));
+    deb(query);
   };
 
   return (
@@ -83,14 +50,12 @@ const SearchPage = ({ search, setSearch }) => {
           <form>
             <input
               onChange={(e) => {
-                //handleChange(e);
-                handleText(e.target.value);
+                handleQuery(e.target.value);
               }}
               type="text"
               placeholder="Search for products"
             ></input>
           </form>
-          {/* {fetchedData && <>{fetchedData.map((p) => p.name)}</>} */}
           <div
             className="closeBtn"
             onClick={() => {
@@ -105,7 +70,12 @@ const SearchPage = ({ search, setSearch }) => {
             <Container>
               <Row>
                 {fetchedData.slice(0, visible).map((p, i) => (
-                  <ProductCard product={p} key={i} />
+                  <ProductCard
+                    product={p}
+                    key={i}
+                    search={search}
+                    setSearch={setSearch}
+                  />
                 ))}
               </Row>
             </Container>

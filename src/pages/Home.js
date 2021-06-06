@@ -8,7 +8,7 @@ import onsideimage from "../assets/onsideimage.jpg";
 
 import RowOfProducts from "../components/RowOfProducts";
 
-const Home = ({ bag, setBag }) => {
+const Home = ({ bag, setBag, search, setSearch }) => {
   return (
     <Container fluid className="px-0">
       <Row
@@ -46,6 +46,8 @@ const Home = ({ bag, setBag }) => {
         isHomePage={true}
         bag={bag}
         setBag={setBag}
+        search={search}
+        setSearch={setSearch}
       />
 
       <Container>
@@ -76,6 +78,8 @@ const Home = ({ bag, setBag }) => {
         isHomePage={true}
         bag={bag}
         setBag={setBag}
+        search={search}
+        setSearch={setSearch}
       />
 
       <Container>

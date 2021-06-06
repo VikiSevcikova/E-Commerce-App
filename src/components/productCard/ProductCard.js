@@ -5,7 +5,7 @@ import { Col, Button, Card, ButtonToolbar } from "react-bootstrap";
 
 import "../../scss/ProductCard.scss";
 
-const ProductCard = ({ product, bag, setBag }) => {
+const ProductCard = ({ product, bag, setBag, setSearch }) => {
   const [sizes, setSizes] = useState(null);
 
   useEffect(() => {
@@ -20,6 +20,10 @@ const ProductCard = ({ product, bag, setBag }) => {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const changeSearchState = () => {
+    setSearch(false);
   };
 
   const addToBag = (e) => {
@@ -54,7 +58,7 @@ const ProductCard = ({ product, bag, setBag }) => {
     <Col lg={6} xl={3}>
       <Card className="border-0" style={{ width: "100%" }} href="#">
         <div className="product-image">
-          <Link to={`/products/${product.id}`}>
+          <Link onClick={changeSearchState} to={`/products/${product.id}`}>
             <Card.Img
               variant="top"
               className="card-img-top rounded-0"
