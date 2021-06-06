@@ -5,7 +5,13 @@ import SizeFilter from "./SizeFilter";
 import ColorFilter from "./ColorFilter";
 import SortByFilter from "./SortByFilter";
 
-const ProductsFilter = ({ title, order, onSortOrderChange, selectedSizes, setSelectedSizes }) => {
+const ProductsFilter = ({
+  title,
+  order,
+  onSortOrderChange,
+  selectedSizes,
+  setSelectedSizes,
+}) => {
   return (
     <>
       <Container className="productBanner">
@@ -32,7 +38,10 @@ const ProductsFilter = ({ title, order, onSortOrderChange, selectedSizes, setSel
                 }
                 className="filter"
               >
-                <SizeFilter selectedSizes={selectedSizes} setSelectedSizes={setSelectedSizes} />
+                <SizeFilter
+                  selectedSizes={selectedSizes}
+                  setSelectedSizes={setSelectedSizes}
+                />
               </Tabs>
               <Tabs
                 eventKey="color"

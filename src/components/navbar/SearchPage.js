@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useState } from "react";
 import "../../scss/SearchPage.scss";
 import { FaTimes } from "react-icons/fa";
 import ProductCard from "../productCard/ProductCard";
@@ -9,10 +9,6 @@ import _ from "lodash";
 const SearchPage = ({ search, setSearch }) => {
   const [fetchedData, setFetchedData] = useState();
   const [visible, setVisible] = useState(20);
-
-  useEffect(() => {
-    console.log("fetched data changed", fetchedData);
-  }, [fetchedData]);
 
   const SeeMore = () => {
     setVisible(visible + 20);
@@ -33,21 +29,17 @@ const SearchPage = ({ search, setSearch }) => {
     }
   };
 
-  const deb = useCallback(
-    _.debounce((query) => fetchProductQuery(query), 1000),
-    []
-  );
-
-  const handleQuery = (query) => {
-    console.log(query.split("product").join(" "));
-    deb(query);
-  };
+  //pass input value as a parameter and fetch data from API
+  const handleQuery = _.debounce((query) => {
+    fetchProductQuery(query);
+  }, 1000);
 
   return (
     <>
       <div className="searchContainer">
         <div className="search">
           <form>
+            {/*pass input value to the function*/}
             <input
               onChange={(e) => {
                 handleQuery(e.target.value);
@@ -69,6 +61,7 @@ const SearchPage = ({ search, setSearch }) => {
           <div>
             <Container>
               <Row>
+                {/*map all fetched data and pass them to the ProductCard component */}
                 {fetchedData.slice(0, visible).map((p, i) => (
                   <ProductCard
                     product={p}
@@ -79,6 +72,7 @@ const SearchPage = ({ search, setSearch }) => {
                 ))}
               </Row>
             </Container>
+            {/*if fetchedData.length is more than visible, show see more button*/}
             {visible < fetchedData.length && (
               <div className="seeMoreButtonContainer">
                 <Button

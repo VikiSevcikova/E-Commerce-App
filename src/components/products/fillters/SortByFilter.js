@@ -7,6 +7,7 @@ const SortByFilter = ({ order, onSortOrderChange }) => {
     <>
       <div className="fillterContainer">
         <div className="sortByContainer">
+          {/*if it was checked, change order state to price-asc, and if it's price-asc, keep checking*/}
           <input
             checked={order === "price-asc"}
             style={{ display: "inline" }}
@@ -22,6 +23,7 @@ const SortByFilter = ({ order, onSortOrderChange }) => {
           <label htmlFor="priceLowtoHigh">Price: Low to High</label>
         </div>
         <div className="sortByContainer">
+          {/*if it was checked, change order state to price-desc, and if it's price-desc, keep checking*/}
           <input
             checked={order === "price-desc"}
             style={{ display: "inline" }}

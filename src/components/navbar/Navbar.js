@@ -59,6 +59,7 @@ const Navbar = ({ bag, search, setSearch }) => {
                 ))}
             </ul>
             <ul className="nav navbar-nav ms-20">
+              {/* when search btn was clicked change search state. */}
               <li
                 className="nav-item"
                 onClick={() => {
@@ -88,6 +89,7 @@ const Navbar = ({ bag, search, setSearch }) => {
           </div>
         </div>
       </nav>
+      {/*if search is true render SearchPage component*/}
       {search && <SearchPage search={search} setSearch={setSearch} />}
     </>
   );

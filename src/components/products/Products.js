@@ -39,6 +39,7 @@ const Products = ({ bag, setBag, search, setSearch }) => {
     if (Array.isArray(fetchedData)) {
       const sorted = [...fetchedData];
 
+      //if productOrder coming from ProductsFilter component is price-asc, sort by asc. if not, sort by desc.
       switch (productOrder) {
         case "price-asc":
           sorted.sort((a, b) => a.price - b.price);
