@@ -16,10 +16,12 @@ import "./scss/App.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import ShoppingBag from "./pages/ShoppingBagPage";
+import SearchPage from "./components/navbar/SearchPage";
 import Checkout from "./pages/Checkout";
 
 function App() {
   const [bag, setBag] = useState([]);
+  const [search, setSearch] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("bag") === null) {
@@ -37,12 +39,20 @@ function App() {
     <>
       <Router>
         <div className="App">
-          <Navbar bag={bag} />
+          <Navbar bag={bag} search={search} setSearch={setSearch} />
           <Switch>
             <Route
               path="/"
               exact
-              render={(props) => <Home {...props} bag={bag} setBag={setBag} />}
+              render={(props) => (
+                <Home
+                  {...props}
+                  bag={bag}
+                  setBag={setBag}
+                  search={search}
+                  setSearch={setSearch}
+                />
+              )}
             />
             <Route path="/signin" exact component={SignInPage} />
             <Route
@@ -60,25 +70,44 @@ function App() {
                 <ShoppingBag {...props} bag={bag} setBag={setBag} />
               )}
             />
+            <Route path="/search/" exact component={SearchPage} />
             <Route
               path="/category/:category/:subcategory"
               exact
               render={(props) => (
-                <ProductsPage {...props} bag={bag} setBag={setBag} />
+                <ProductsPage
+                  {...props}
+                  bag={bag}
+                  setBag={setBag}
+                  search={search}
+                  setSearch={setSearch}
+                />
               )}
             />
             <Route
               path="/category/:category"
               exact
               render={(props) => (
-                <ProductsPage {...props} bag={bag} setBag={setBag} />
+                <ProductsPage
+                  {...props}
+                  bag={bag}
+                  setBag={setBag}
+                  search={search}
+                  setSearch={setSearch}
+                />
               )}
             />
             <Route
               path="/category/all-products"
               exact
               render={(props) => (
-                <ProductsPage {...props} bag={bag} setBag={setBag} />
+                <ProductsPage
+                  {...props}
+                  bag={bag}
+                  setBag={setBag}
+                  search={search}
+                  setSearch={setSearch}
+                />
               )}
             />
             <Route

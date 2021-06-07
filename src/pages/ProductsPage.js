@@ -2,10 +2,10 @@ import React from "react";
 import "../scss/Product.scss";
 import Products from "../components/products/Products";
 
-const ProductsPage = (props) => {
+const ProductsPage = ({ props, search, setSearch }) => {
   return (
     <>
-      <Products props={props}/>
+      <Products props={props} search={search} setSearch={setSearch} />
     </>
   );
 };

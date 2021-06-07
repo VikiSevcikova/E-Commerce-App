@@ -5,7 +5,7 @@ import ProductsFilter from "./fillters/ProductsFiltter";
 import { Button, Row, Container } from "react-bootstrap";
 import { useParams } from "react-router";
 
-const Products = ({ bag, setBag }) => {
+const Products = ({ bag, setBag, search, setSearch }) => {
   //set useState to undefined first.
   const [fetchedData, setFetchedData] = useState();
   const [sortedData, setSortedData] = useState();
@@ -39,6 +39,7 @@ const Products = ({ bag, setBag }) => {
     if (Array.isArray(fetchedData)) {
       const sorted = [...fetchedData];
 
+      //if productOrder coming from ProductsFilter component is price-asc, sort by asc. if not, sort by desc.
       switch (productOrder) {
         case "price-asc":
           sorted.sort((a, b) => a.price - b.price);
@@ -53,9 +54,11 @@ const Products = ({ bag, setBag }) => {
   }, [fetchedData, productOrder, selectedSizes]);
 
   const filterBySize = (sorted) => {
-    if(!selectedSizes || selectedSizes.length === 0) return sorted;
-    return sorted.filter(s => s.stock.some(st => selectedSizes.includes(st.size) && st.quantity >= 20));
-  }
+    if (!selectedSizes || selectedSizes.length === 0) return sorted;
+    return sorted.filter((s) =>
+      s.stock.some((st) => selectedSizes.includes(st.size) && st.quantity >= 20)
+    );
+  };
 
   return (
     <>
@@ -76,7 +79,14 @@ const Products = ({ bag, setBag }) => {
             sortedData
               .slice(0, visible)
               .map((p, i) => (
-                <ProductCard product={p} key={i} bag={bag} setBag={setBag} />
+                <ProductCard
+                  product={p}
+                  key={i}
+                  bag={bag}
+                  setBag={setBag}
+                  search={search}
+                  setSearch={setSearch}
+                />
               ))}
         </Row>
       </Container>

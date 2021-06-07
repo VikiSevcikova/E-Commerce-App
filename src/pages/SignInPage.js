@@ -18,6 +18,7 @@ function SignInPage() {
       </Row>
       <Row>
         <Col>
+          {/* when onMouseOver change state of hovered */}
           <LogIn
             isHovered={isLogInHovered}
             onMouseOver={() => {

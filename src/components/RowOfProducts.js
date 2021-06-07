@@ -4,7 +4,15 @@ import { Container, Row } from "react-bootstrap";
 
 import ProductCard from "./productCard/ProductCard";
 
-const RowOfProducts = ({ productId, category, isHomePage, bag, setBag }) => {
+const RowOfProducts = ({
+  productId,
+  category,
+  isHomePage,
+  bag,
+  setBag,
+  search,
+  setSearch,
+}) => {
   const [filteredProducts, setFilteredProducts] = useState(null);
 
   useEffect(() => {
@@ -66,6 +74,8 @@ const RowOfProducts = ({ productId, category, isHomePage, bag, setBag }) => {
                 product={product}
                 bag={bag}
                 setBag={setBag}
+                search={search}
+                setSearch={setSearch}
               />
             );
           })}
