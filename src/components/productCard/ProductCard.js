@@ -58,12 +58,13 @@ const ProductCard = ({ product, bag, setBag, setSearch }) => {
     <Col lg={6} xl={3}>
       <Card className="border-0" style={{ width: "100%" }} href="#">
         <div className="product-image">
-          <Link onClick={changeSearchState} to={`/products/${product.id}`}>
+          <Link to={`/products/${product.id}`}>
             <Card.Img
               variant="top"
               className="card-img-top rounded-0"
               src={product.previewImage}
               alt="p1"
+              onClick={changeSearchState}
             />
           </Link>
           <div className="quick-add-overlay rounded py-2 px-2">

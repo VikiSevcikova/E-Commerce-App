@@ -9,7 +9,7 @@ import ProductCarousel from "../components/ProductCarousel";
 
 import "../scss/ProductDetailsPage.scss";
 
-const ProductDetailsPage = ({ bag, setBag }) => {
+const ProductDetailsPage = ({ bag, setBag, search, setSearch }) => {
   const [product, setProduct] = useState(null);
   const { id } = useParams();
 
@@ -61,6 +61,8 @@ const ProductDetailsPage = ({ bag, setBag }) => {
             category={product.subcategory.name}
             bag={bag}
             setBag={setBag}
+            search={search}
+            setSearch={setSearch}
           />
         </>
       )}
