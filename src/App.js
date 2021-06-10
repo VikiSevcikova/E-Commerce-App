@@ -59,7 +59,13 @@ function App() {
               path="/products/:id"
               exact
               render={(props) => (
-                <ProductDetailsPage {...props} bag={bag} setBag={setBag} />
+                <ProductDetailsPage
+                  {...props}
+                  bag={bag}
+                  setBag={setBag}
+                  search={search}
+                  setSearch={setSearch}
+                />
               )}
               routerProps={":id"}
             />

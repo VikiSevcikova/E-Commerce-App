@@ -31,6 +31,10 @@ const SearchPage = ({ search, setSearch }) => {
 
   //pass input value as a parameter and fetch data from API
   const handleQuery = _.debounce((query) => {
+    if (query.trim().length === 0) {
+      return;
+    }
+
     fetchProductQuery(query);
   }, 1000);
 
